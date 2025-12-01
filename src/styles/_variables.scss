@@ -5,6 +5,7 @@ $dark-gray: hsl(213, 19%, 18%);
 $light-gray: hsl(217, 12%, 63%);
 $white-color: hsl(0, 100%, 100%);
 $btn-bg-color: hsl(25, 97%, 53%);
+$bg-gradiant: linear-gradient(-155deg, $dark-gray, rgba($dark-gray, 20%));
 
 @font-face {
   font-family: "Overpass";
