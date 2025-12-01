@@ -1,0 +1,86 @@
+@use "../styles/variables" as vars;
+@use "../styles/mixins";
+.card {
+  max-width: 22rem;
+  background: linear-gradient(
+    -155deg,
+    vars.$dark-gray,
+    rgba(vars.$dark-gray, 20%)
+  );
+  padding: clamp(1.5rem, 5vw, 2rem);
+  border-radius: 1.25rem;
+  @media (min-width: 25rem) {
+    max-width: 25rem;
+  }
+  &.thank-card {
+    text-align: center;
+  }
+  .thank-img {
+    margin-block-start: 1rem;
+  }
+  .special-text {
+    color: vars.$btn-bg-color;
+    background-color: vars.$dark-gray;
+    width: fit-content;
+    margin-inline: auto;
+    margin-block-start: 1.5rem;
+    padding-inline: 1rem;
+    padding-block: 0.6rem 0.4rem;
+    border-radius: 1.25rem;
+    font-size: vars.$paragraph-font-size;
+  }
+  .star {
+    @include mixins.circle;
+  }
+  .card-title {
+    font-size: 1.5rem;
+    color: vars.$white-color;
+    margin-block-start: 2.5rem;
+  }
+  .card-text {
+    color: vars.$light-gray;
+    line-height: 1.6;
+    margin-block: 0.6rem 1.5rem;
+    font-size: vars.$paragraph-font-size;
+  }
+  .rating-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    .rate-circle {
+      @include mixins.circle;
+      color: vars.$light-gray;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+      &:hover {
+        background-color: vars.$btn-bg-color;
+        color: vars.$dark-gray;
+      }
+      &.active {
+        background-color: vars.$white-color;
+        color: vars.$dark-gray;
+      }
+    }
+  }
+  .card-submit {
+    background-color: vars.$btn-bg-color;
+    color: vars.$dark-gray;
+    width: 100%;
+    padding-block: 1rem;
+    margin-block-start: 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 1.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.125rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      background-color: vars.$white-color;
+    }
+  }
+}

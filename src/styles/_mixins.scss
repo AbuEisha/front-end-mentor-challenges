@@ -1,0 +1,18 @@
+@use "variables" as vars;
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin circle {
+  width: 2.85rem;
+  height: 2.85rem;
+  @media (min-width: 25rem) {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+  border-radius: 50%;
+  @include flex-center();
+  background-color: vars.$dark-gray;
+}
