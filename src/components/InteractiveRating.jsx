@@ -26,7 +26,13 @@ export default function InteractiveRating() {
             {ratingArray.map((rate, i) => (
               <li
                 key={i}
+<<<<<<< HEAD
                 className={`rate-item ${starsCount === rate ? "rate-item--active" : ""}`}
+=======
+                className={`rate-item ${
+                  starsCount === rate ? "rate-item--active" : ""
+                }`}
+>>>>>>> af456f4 (Update Some Challenge Files)
                 onClick={() => setStarsCount(rate)}
               >
                 {rate}
@@ -41,7 +47,15 @@ export default function InteractiveRating() {
 
       {isSubmitted && (
         <div className="card card--thank">
+<<<<<<< HEAD
           <img src={thankIcon} alt="Thank You Icon" className="thank-card-img" />
+=======
+          <img
+            src={thankIcon}
+            alt="Thank You Icon"
+            className="thank-card-img"
+          />
+>>>>>>> af456f4 (Update Some Challenge Files)
           <p className="special-text">You selected {starsCount} out of 5</p>
           <h2 className="card-title">Thank you!</h2>
           <p className="card-description">
