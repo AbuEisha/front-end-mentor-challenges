@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL Here](https://your-live-site-url.com)
+- [Live Site URL Here](https://article-preview-component-acp.pages.dev/)
 
 ## My process
 
@@ -41,4 +41,4 @@ Users should be able to:
 
 ## Author
 
-- - [Frontend Mentor Profile](https://www.frontendmentor.io/profile/AbuEisha)
+- [Frontend Mentor Profile](https://www.frontendmentor.io/profile/AbuEisha)
