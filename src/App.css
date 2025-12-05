@@ -159,18 +159,21 @@ body {
   position: relative;
   z-index: 2;
 }
+
+.share-btn {
+  transition: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .share-btn {
     transition: background-color 0.3s ease;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .share-btn {
-    transition: none;
-  }
+
+.share-btn:hover {
+  background-color: var(--dark-blue-color);
 }
 
-.share-btn:hover,
 .share-btn--active {
   background-color: var(--dark-blue-color);
 }
@@ -180,6 +183,10 @@ body {
 }
 
 .share-btn--active .share-icon {
+  filter: brightness(0) invert(1);
+}
+
+.share-btn--active:hover .share-icon {
   filter: brightness(0) invert(1);
 }
 
