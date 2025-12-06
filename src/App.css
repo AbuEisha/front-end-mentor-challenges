@@ -184,11 +184,7 @@ body {
   filter: brightness(0) invert(1);
 }
 
-.share-btn--active .share-icon {
-  filter: brightness(0) invert(1);
-}
-
-.share-btn--active:hover .share-icon {
+.share-btn.share-btn--active .share-icon {
   filter: brightness(0) invert(1);
 }
 
