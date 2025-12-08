@@ -99,12 +99,13 @@ function App() {
                 handleChange={handleInputChange}
               />
             ))}
-            <input
+            <button
               type="submit"
-              value="Claim your free trial"
               className="form-submit"
               onClick={handleSumbit}
-            />
+            >
+              Claim your free trial
+            </button>
             <p className="terms-text">
               By clicking the button, you are agreeing to our{" "}
               <a href="#" className="terms-link">
