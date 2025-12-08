@@ -95,11 +95,13 @@ body {
 .intro-title {
   font-size: calc(var(--font-size-base) * 1.75);
   margin-block-end: calc(var(--small-spacing) * 3);
+  line-height: 1.3;
 }
 
 @media (min-width: 35.4375rem) {
   .intro-title {
     font-size: calc(var(--font-size-base) * 3.05);
+    line-height: 1.05;
   }
 }
 
