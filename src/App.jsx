@@ -17,6 +17,12 @@ import ExtensionCard from "./ExtensionCard";
 import initialExtensions from "./assets/data/data.json";
 import RemoveDialog from "./RemoveDialog";
 
+const images = import.meta.glob("./assets/images/*.svg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
 function App() {
   const { mode, setMode } = useColorScheme();
   const theme = useTheme();
@@ -223,38 +229,59 @@ function App() {
         <Box component="section" paddingBlock="2rem 4rem">
           <Grid container spacing={{ xs: 1.5, md: 2 }}>
             {alignment === "all" &&
-              extensions.map((ext, i) => (
-                <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
-                  <ExtensionCard
-                    mode={mode}
-                    extension={ext}
-                    handleChange={handleExtensionStatus}
-                    handleOpen={handleOpenDialog}
-                  />
-                </Grid>
-              ))}
+              extensions.map((ext, i) => {
+                const fileName = ext.logo.split("/").pop();
+                const imageKey = `./assets/images/${fileName}`;
+                const imgSrc = images[imageKey];
+
+                return (
+                  <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
+                    <ExtensionCard
+                      mode={mode}
+                      extension={ext}
+                      imgSrc={imgSrc}
+                      handleChange={handleExtensionStatus}
+                      handleOpen={handleOpenDialog}
+                    />
+                  </Grid>
+                );
+              })}
             {alignment === "active" &&
-              activeExtensions.map((ext, i) => (
-                <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
-                  <ExtensionCard
-                    mode={mode}
-                    extension={ext}
-                    handleChange={handleExtensionStatus}
-                    handleOpen={handleOpenDialog}
-                  />
-                </Grid>
-              ))}
+              activeExtensions.map((ext, i) => {
+                const fileName = ext.logo.split("/").pop();
+                const imageKey = `./assets/images/${fileName}`;
+                const imgSrc = images[imageKey];
+
+                return (
+                  <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
+                    <ExtensionCard
+                      mode={mode}
+                      extension={ext}
+                      imgSrc={imgSrc}
+                      handleChange={handleExtensionStatus}
+                      handleOpen={handleOpenDialog}
+                    />
+                  </Grid>
+                );
+              })}
             {alignment === "inactive" &&
-              inactiveExtensions.map((ext, i) => (
-                <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
-                  <ExtensionCard
-                    mode={mode}
-                    extension={ext}
-                    handleChange={handleExtensionStatus}
-                    handleOpen={handleOpenDialog}
-                  />
-                </Grid>
-              ))}
+              inactiveExtensions.map((ext, i) => {
+                const fileName = ext.logo.split("/").pop();
+                const imageKey = `./assets/images/${fileName}`;
+                const imgSrc = images[imageKey];
+
+                return (
+                  <Grid key={i} size={{ xs: 12, md: 6, lg: 4 }}>
+                    <ExtensionCard
+                      mode={mode}
+                      extension={ext}
+                      imgSrc={imgSrc}
+                      handleChange={handleExtensionStatus}
+                      handleOpen={handleOpenDialog}
+                    />
+                  </Grid>
+                );
+              })}
           </Grid>
         </Box>
       </Container>

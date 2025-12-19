@@ -3,13 +3,10 @@ import { Stack, Typography, Button, Switch, Box } from "@mui/material";
 export default function ExtensionCard({
   mode,
   extension,
+  imgSrc,
   handleChange,
   handleOpen,
 }) {
-  // variables
-
-  const imgUrl = new URL(extension.logo, import.meta.url).href;
-
   // Styles
   const articleStyle = {
     minHeight: "12.5rem",
@@ -101,7 +98,7 @@ export default function ExtensionCard({
   return (
     <Stack component="article" sx={articleStyle} justifyContent="space-between">
       <Stack gap={2} flexDirection="row" alignItems="flex-start">
-        <img src={imgUrl} alt={extension.name} />
+        <img src={imgSrc} alt={extension.name} />
         <Box>
           <Typography
             variant="h2"
