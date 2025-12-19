@@ -82,7 +82,7 @@ function App() {
 
   const toggleButtonsStyles = {
     gap: "1rem",
-    ".MuiToggleButton-root": {
+    "& .MuiToggleButton-root": {
       padding: "0.375rem 1.25rem",
       borderRadius: "1.5rem",
       margin: 0,
@@ -164,6 +164,7 @@ function App() {
             </Grid>
             <Grid size={4} textAlign="end">
               <IconButton
+                aria-label="close"
                 onClick={toggleMode}
                 sx={{
                   backgroundColor: "background.paper",
