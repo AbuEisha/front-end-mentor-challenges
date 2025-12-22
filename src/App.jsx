@@ -4,11 +4,10 @@ import {
   Grid,
   IconButton,
   Typography,
-  ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
 import "./App.css";
-import { useColorScheme, useTheme, styled } from "@mui/material/styles";
+import { useColorScheme, useTheme } from "@mui/material/styles";
 import Logo from "./assets/images/logo.svg?react";
 import SunIcon from "./assets/images/icon-sun.svg?react";
 import MoonIcon from "./assets/images/icon-moon.svg?react";
@@ -16,77 +15,12 @@ import { useState, useEffect, useMemo } from "react";
 import ExtensionCard from "./ExtensionCard";
 import initialExtensions from "./assets/data/data.json";
 import RemoveDialog from "./RemoveDialog";
+import { StyledToggleButton } from "./CustomStyles";
 
 const images = import.meta.glob("./assets/images/*.svg", {
   eager: true,
   query: "?url",
   import: "default",
-});
-
-const StyledToggleButton = styled(ToggleButton)(({ theme, mode = "light" }) => {
-  return {
-    padding: "0.375rem 1.25rem",
-    "&&&": {
-      borderRadius: "1.5rem",
-      margin: 0,
-      border: "0.0625rem solid",
-      borderColor: theme.palette.special.borderHover,
-    },
-    fontWeight: 400,
-    fontSize: "1rem",
-    textTransform: "none",
-    backgroundColor:
-      mode === "dark"
-        ? theme.palette.background.paper
-        : theme.palette.background.default,
-    color: theme.palette.text.secondary,
-    boxShadow:
-      mode === "dark" ? "none" : "0 0.125rem 0.3125rem hsl(0deg 0% 78% / 33%)",
-    "&&": {
-      "&.Mui-selected": {
-        backgroundColor:
-          mode === "dark"
-            ? theme.palette.primary.main
-            : theme.palette.primary.dark,
-        color: theme.palette.special.activeButton,
-        fontSize: "1.125rem",
-        fontWeight: 500,
-
-        "&:not(:focus)": {
-          borderColor: theme.palette.primary.main,
-        },
-
-        "&:hover": {
-          backgroundColor:
-            mode === "dark"
-              ? theme.palette.primary.light
-              : theme.palette.primary.dark,
-          opacity: mode === "dark" ? 1 : 0.8,
-        },
-      },
-    },
-
-    "&&&:focus": {
-      borderWidth: "0.125rem",
-      borderColor: theme.palette.background.default,
-      outline: "0.125rem solid",
-      outlineColor: theme.palette.primary.main,
-      "&:not(.Mui-selected)": {
-        backgroundColor:
-          mode === "dark"
-            ? theme.palette.special.iconHover
-            : theme.palette.background.default,
-      },
-    },
-
-    "&:hover": {
-      backgroundColor:
-        mode === "dark"
-          ? theme.palette.special.iconHover
-          : theme.palette.background.default,
-      opacity: mode === "dark" ? 1 : 0.65,
-    },
-  };
 });
 
 function App() {

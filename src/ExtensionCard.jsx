@@ -1,4 +1,5 @@
-import { Stack, Typography, Button, Switch, Box } from "@mui/material";
+import { Stack, Typography, Switch, Box } from "@mui/material";
+import { RemoveBtnStyled } from "./CustomStyles";
 
 export default function ExtensionCard({
   mode,
@@ -17,35 +18,6 @@ export default function ExtensionCard({
     borderColor: "special.borderHover",
     boxShadow:
       mode === "dark" ? "none" : "0 0.125rem 0.3125rem hsl(0deg 0% 78% / 33%)",
-  };
-
-  const removeBtnStyle = {
-    width: "5.6875rem",
-    height: "2.375rem",
-    borderRadius: "1.5rem",
-    textTransform: "Capitalize",
-    color: "text.secondary",
-    borderColor: "special.borderHover",
-    "&:hover": {
-      backgroundColor: mode === "dark" ? "primary.light" : "primary.dark",
-      color: "special.activeButton",
-      borderColor: mode === "dark" ? "primary.light" : "primary.dark",
-    },
-
-    "&:focus": {
-      backgroundColor:
-        mode === "dark" ? "special.iconHover" : "background.paper",
-      border: "0.125rem solid",
-      borderColor: "background.default",
-      outline: "0.125rem solid",
-      outlineColor: "primary.main",
-      "&:hover": {
-        backgroundColor: mode === "dark" ? "primary.light" : "primary.dark",
-        color: "special.activeButton",
-        borderColor: mode === "dark" ? "primary.light" : "primary.dark",
-        outlineColor: mode === "dark" ? "primary.light" : "primary.dark",
-      },
-    },
   };
 
   const switchBtnStyle = {
@@ -130,13 +102,14 @@ export default function ExtensionCard({
         justifyContent="space-between"
         alignItems="center"
       >
-        <Button
-          variant="outlined"
-          sx={removeBtnStyle}
+        <RemoveBtnStyled
+          component="button"
+          type="button"
           onClick={() => handleOpen(extension.name)}
+          mode={mode}
         >
           Remove
-        </Button>
+        </RemoveBtnStyled>
         <Switch
           checked={extension.isActive}
           onChange={() => handleChange(extension.name)}
