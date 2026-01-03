@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Input, Typography } from "@mui/material";
+import { Box, Button, FormControl, Typography } from "@mui/material";
 import InputFileUpload from "./InputFileUpload";
 import { useState } from "react";
 import CustomInput from "./CustomInput";
@@ -104,16 +104,15 @@ export default function FormDesign({
         color="hsl(252, 6%, 83%)"
         fontSize={{ xs: "1.25rem", sm: "1.35rem" }}
         fontWeight={500}
-        marginBlockStart=".75rem"
+        marginBlock={{ xs: "1.75rem 2.5rem", md: "2rem 3rem" }}
       >
-        Secure your spot at next year's biggest coding conference.
+        Secure your spot at next year&apos;s biggest coding conference.
       </Typography>
       <Box
         component="form"
         autoComplete="off"
         textAlign="start"
         maxWidth="27.8125rem"
-        marginBlockStart="2rem"
         marginInline="auto"
       >
         <FormControl fullWidth>

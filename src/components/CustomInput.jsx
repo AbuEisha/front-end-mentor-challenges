@@ -3,7 +3,9 @@ import InfoIcon from "../assets/images/icon-info.svg?react";
 export default function CustomInput({ info, value, handleChange, error }) {
   return (
     <FormControl fullWidth sx={{ marginBlockStart: "1.5rem" }}>
-      <Typography marginBlockEnd=".5rem">{info.label}</Typography>
+      <Typography component="label" htmlFor={info.name} marginBlockEnd=".5rem">
+        {info.label}
+      </Typography>
       <Input
         sx={{
           borderRadius: ".5rem",
@@ -34,6 +36,7 @@ export default function CustomInput({ info, value, handleChange, error }) {
         }}
         value={value}
         onChange={(e) => handleChange(e, info.name)}
+        id={info.name}
         name={info.name}
         placeholder={info.placeholder}
       />

@@ -12,7 +12,7 @@ export default function TicketDesign({ info }) {
         fontSize={{ xs: "1.75rem", sm: "2.5rem", md: "3.5rem" }}
         fontWeight={700}
       >
-        Congrats,{" "}
+        {"Congrats, "}
         <Box
           component="span"
           sx={{
@@ -24,7 +24,7 @@ export default function TicketDesign({ info }) {
         >
           {info.fullName}
         </Box>
-        ! Your ticket is ready.
+        {"! Your ticket is ready."}
       </Typography>
       <Typography
         variant="body1"
@@ -35,11 +35,11 @@ export default function TicketDesign({ info }) {
         maxWidth="29.25rem"
         marginInline="auto"
       >
-        We've emailed your ticket to{" "}
+        {"We've emailed your ticket to "}
         <Box component="span" sx={{ color: "hsl(7, 88%, 67%)" }}>
           {info.email}
-        </Box>{" "}
-        and will send updates in the run up to the event.
+        </Box>
+        {" and will send updates in the run up to the event."}
       </Typography>
 
       <Box
@@ -52,7 +52,12 @@ export default function TicketDesign({ info }) {
           textAlign: "start",
         }}
       >
-        <Box component="img" src={ticketPattern} maxWidth="100%" />
+        <Box
+          component="img"
+          src={ticketPattern}
+          maxWidth="100%"
+          alt="Ticket Pattern"
+        />
         <Grid
           container
           sx={{
@@ -92,7 +97,7 @@ export default function TicketDesign({ info }) {
                     fontSize={{ xs: ".9rem", sm: "1.181rem" }}
                     sx={{ color: "hsl(252, 6%, 83%)" }}
                   >
-                    Jan 31, 2025 / Austin, TX
+                    {"Jan 31, 2025 / Austin, TX"}
                   </Typography>
                 </Box>
               </Stack>
@@ -157,7 +162,7 @@ export default function TicketDesign({ info }) {
               fontSize={{ xs: "1.5rem", sm: "1.75rem" }}
               sx={{ transform: "rotateZ(90deg)", color: "hsl(245, 15%, 58%)" }}
             >
-              #01609
+              {"#01609"}
             </Typography>
           </Grid>
         </Grid>

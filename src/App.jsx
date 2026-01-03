@@ -44,7 +44,7 @@ export default function App() {
       component="main"
       sx={{
         minHeight: "100vh",
-        paddingBlock: { xs: "2rem", md: "2.5rem" },
+        paddingBlock: { xs: "2rem 2.34rem", md: "2.5rem 3.8rem" },
         position: "relative",
         backgroundImage: {
           xs: `url(${mobileBg})`,
@@ -101,11 +101,11 @@ export default function App() {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: "61.5%", md: "51%" },
-            right: { xs: "-4.125rem", md: "20%" },
+            top: { xs: "59.5%", md: "53%" },
+            right: { xs: "-4.125rem", md: "20.25%" },
             "& svg": {
-              width: { xs: "9.375rem", md: "auto" },
-              height: { xs: "9.375rem", md: "auto" },
+              width: { xs: "8.375rem", md: "auto" },
+              height: { xs: "8.375rem", md: "auto" },
             },
           }}
         >
@@ -126,7 +126,12 @@ export default function App() {
         ></Box>
       </Box>
       <Container maxWidth="md" sx={{ textAlign: "center" }}>
-        <Box component="img" src={Logo} marginBlockEnd="3rem" />
+        <Box
+          component="img"
+          src={Logo}
+          marginBlockEnd={{ xs: "2.75rem", md: "4.25rem" }}
+          alt="Conference Ticket Generator Logo"
+        />
         {showTicket ? (
           <TicketDesign info={formInputs} />
         ) : (

@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL Here](https://your-live-site-url.com)
+- [Live Site URL Here](https://conference-ticket-generator-49r.pages.dev/)
 
 ## My process
 
@@ -51,5 +51,4 @@ Users should be able to:
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
 - [Frontend Mentor Profile](https://www.frontendmentor.io/profile/AbuEisha)

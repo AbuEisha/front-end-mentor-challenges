@@ -58,10 +58,6 @@ export default function InputFileUpload({
     }
   };
 
-  const handleClick = () => {
-    fileInputRef.current.click();
-  };
-
   const handleRemoveImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -72,17 +68,17 @@ export default function InputFileUpload({
   };
 
   const handleChangeImage = (e) => {
+    e.preventDefault();
     e.stopPropagation();
-    handleClick();
+    fileInputRef.current.click();
   };
   return (
     <>
-      <Button
-        component="div"
-        role="button"
-        variant="contained"
+      <Box
+        component={imageFile ? "div" : "label"}
+        htmlFor={imageFile ? undefined : "upload-image"}
+        role={undefined}
         tabIndex={-1}
-        disableRipple
         sx={{
           background: isDraggedOver
             ? "hsl(245deg 19% 35% / 80%)"
@@ -91,34 +87,35 @@ export default function InputFileUpload({
           boxShadow: "none",
           textAlign: "center",
           fontSize: "1rem",
-          padding: "0",
-          borderRadius: "1.25rem",
+          height: "8rem",
+          borderRadius: "1rem",
           border: "0.125rem dashed hsl(245, 15%, 58%)",
           textTransform: "none",
-          cursor: "pointer",
-          "&.Mui-focusVisible": {
-            outline: "0.125rem solid hsl(245, 15%, 58%)",
-            outlineOffset: "0.125rem",
-            boxShadow: "none",
-          },
-          "&:focus": {
+          cursor: imageFile ? "default" : "pointer",
+          "&:has(:focus)": {
             outline: "0.125rem solid hsl(245, 15%, 58%)",
             outlineOffset: "0.125rem",
             boxShadow: "none",
           },
           "&:hover": {
-            backgroundColor: "hsl(245deg 19% 35% / 80%)",
+            backgroundColor: imageFile
+              ? "hsl(245deg 19% 35% / 47%)"
+              : "hsl(245deg 19% 35% / 80%)",
             "& span": {
-              backgroundColor: "hsl(245deg 19% 35% / 80%)",
+              backgroundColor: imageFile
+                ? "hsl(245deg 19% 35% / 47%)"
+                : "hsl(245deg 19% 35% / 80%)",
               borderColor: "hsl(245, 15%, 58%)",
             },
           },
         }}
-        onClick={!imageFile ? handleClick : undefined}
       >
         <Box
           component="div"
-          sx={{ width: "100%", height: "100%", paddingBlock: "1.25rem .75rem" }}
+          sx={{ width: "100%", height: "100%", paddingBlock: "1rem" }}
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
           onDragOver={handleDragOver}
           onDrop={handleDropImage}
         >
@@ -131,7 +128,6 @@ export default function InputFileUpload({
               borderRadius: ".75rem",
               alignItems: "center",
               justifyContent: "center",
-              marginBlockEnd: "1.25rem",
               marginInline: "auto",
               backgroundColor: "hsl(245deg 19% 35% / 59%)",
               border: "0.0625rem solid",
@@ -153,7 +149,9 @@ export default function InputFileUpload({
             />
           </Box>
 
-          {!imageFile && "Drag and drop or click to upload"}
+          {!imageFile && (
+            <Typography>Drag and drop or click to upload</Typography>
+          )}
 
           {imageFile && (
             <Box
@@ -169,7 +167,12 @@ export default function InputFileUpload({
                   backgroundColor: "hsl(245deg 19% 35% / 59%)",
                   color: "hsl(0, 0%, 100%)",
                   textTransform: "none",
-                  padding: "0.1rem .5rem",
+                  padding: "0rem .5rem",
+                  height: "1.5rem",
+                  "&:hover": {
+                    color: "hsl(252, 6%, 83%)",
+                    textDecoration: "underLine",
+                  },
                   "&:focus": {
                     color: "hsl(252, 6%, 83%)",
                     textDecoration: "underLine",
@@ -186,7 +189,12 @@ export default function InputFileUpload({
                   backgroundColor: "hsl(245deg 19% 35% / 59%)",
                   color: "hsl(0, 0%, 100%)",
                   textTransform: "none",
-                  padding: "0.1rem .5rem",
+                  padding: "0rem .5rem",
+                  height: "1.5rem",
+                  "&:hover": {
+                    color: "hsl(252, 6%, 83%)",
+                    textDecoration: "underLine",
+                  },
                   "&:focus": {
                     color: "hsl(252, 6%, 83%)",
                     textDecoration: "underLine",
@@ -200,12 +208,14 @@ export default function InputFileUpload({
           )}
         </Box>
         <VisuallyHiddenInput
+          id="upload-image"
+          name="imageUploaded"
           ref={fileInputRef}
           type="file"
           onChange={(e) => handleChange(e, "imageFile")}
           accept=".jpg, .png"
         />
-      </Button>
+      </Box>
 
       <Typography
         variant="body2"
