@@ -149,7 +149,9 @@ export default function InputFileUpload({
           </Box>
 
           {!imageFile && (
-            <Typography>Drag and drop or click to upload</Typography>
+            <Typography component="span" variant="body1">
+              Drag and drop or click to upload
+            </Typography>
           )}
 
           {imageFile && (
