@@ -76,7 +76,6 @@ export default function InputFileUpload({
     <>
       <Box
         component={imageFile ? "div" : "label"}
-        htmlFor={imageFile ? undefined : "upload-image"}
         role={undefined}
         tabIndex={-1}
         sx={{
@@ -101,7 +100,7 @@ export default function InputFileUpload({
             backgroundColor: imageFile
               ? "hsl(245deg 19% 35% / 47%)"
               : "hsl(245deg 19% 35% / 80%)",
-            "& span": {
+            "& .css-1j6xrkj": {
               backgroundColor: imageFile
                 ? "hsl(245deg 19% 35% / 47%)"
                 : "hsl(245deg 19% 35% / 80%)",
@@ -111,7 +110,7 @@ export default function InputFileUpload({
         }}
       >
         <Box
-          component="div"
+          component="span"
           sx={{ width: "100%", height: "100%", paddingBlock: "1rem" }}
           display="flex"
           flexDirection="column"
@@ -155,7 +154,7 @@ export default function InputFileUpload({
 
           {imageFile && (
             <Box
-              component="div"
+              component="span"
               display="flex"
               justifyContent="center"
               gap=".75rem"
