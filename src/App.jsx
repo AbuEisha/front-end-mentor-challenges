@@ -79,7 +79,7 @@ export default function App() {
       component="main"
       sx={{
         minHeight: "100vh",
-        paddingBlock: { xs: "1.5rem", sm: "5.14rem" },
+        paddingBlock: { xs: "1.5rem", sm: "5.1rem" },
         backgroundColor: "background.default",
       }}
     >
@@ -128,8 +128,8 @@ export default function App() {
               }}
             >
               <Typography
-                variant="h2"
-                fontSize="1.75rem"
+                variant="h3"
+                fontSize="1.5rem"
                 fontWeight={700}
                 lineHeight={1}
                 color="primary.main"
@@ -150,7 +150,7 @@ export default function App() {
                     >
                       <Box>
                         <Typography
-                          variant="h3"
+                          variant="h4"
                           fontWeight={600}
                           fontSize="1rem"
                           color="text.primary"
@@ -237,7 +237,7 @@ export default function App() {
                       Order Total
                     </Typography>
                     <Typography
-                      variant="h2"
+                      variant="h5"
                       fontSize="1.5rem"
                       fontWeight={700}
                       lineHeight={1}
@@ -300,13 +300,13 @@ export default function App() {
                   </Box>
                 </Box>
               ) : (
-                <Box textAlign="center" marginBlock="2.5rem .5rem">
+                <Box textAlign="center" marginBlock="2.5rem .75rem">
                   <Box component="img" src={emptyCart} alt="Empty Cart icon" />
                   <Typography
                     variant="body1"
                     color="text.secondary"
                     fontWeight={600}
-                    marginBlockStart="1rem"
+                    marginBlockStart=".9rem"
                   >
                     Your added items will appear here
                   </Typography>

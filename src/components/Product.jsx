@@ -222,7 +222,7 @@ export default function Product({
         {product.category}
       </Typography>
       <Typography
-        variant="h3"
+        variant="h2"
         fontWeight={600}
         color="text.primary"
         fontSize="1rem"

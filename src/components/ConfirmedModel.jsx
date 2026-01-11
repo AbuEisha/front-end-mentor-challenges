@@ -4,8 +4,6 @@ import {
   Stack,
   Dialog,
   DialogContent,
-  DialogContentText,
-  DialogTitle,
   Typography,
   Slide,
 } from "@mui/material";
@@ -49,17 +47,22 @@ export default function ConfirmedModel({
         alt="Confirmed Icon"
         maxWidth="48px"
       />
-      <DialogTitle
+      <Typography
+        variant="h2"
         fontSize="2.5rem"
         fontWeight={700}
         lineHeight={1}
         sx={{ padding: 0, marginBlock: "1.75rem 1rem" }}
       >
         {"Order Confirmed"}
-      </DialogTitle>
-      <DialogContentText id="alert-dialog-slide-description">
+      </Typography>
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        id="alert-dialog-slide-description"
+      >
         {"We hope you enjoy your food!"}
-      </DialogContentText>
+      </Typography>
       <DialogContent
         sx={{
           backgroundColor: "background.default",
@@ -143,7 +146,7 @@ export default function ConfirmedModel({
             Order Total
           </Typography>
           <Typography
-            variant="h2"
+            variant="h4"
             fontSize="1.5rem"
             fontWeight={700}
             lineHeight={1}
