@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL Here](https://conference-ticket-generator-49r.pages.dev/)
+- [Live Site URL Here](https://conference-ticket-generator-live.pages.dev/)
 
 ## My process
 
