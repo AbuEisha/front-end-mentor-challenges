@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL Here](https://article-preview-component-acp.pages.dev/)
+- [Live Site URL Here](https://article-preview-component-live.pages.dev/)
 
 ## My process
 
