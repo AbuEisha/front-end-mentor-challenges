@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL](https://interactive-rating-component-euo.pages.dev/)
+- [Live Site URL](https://interactive-rating-component-live.pages.dev/)
 
 ## My process
 
