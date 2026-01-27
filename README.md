@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL here](https://faq-accordion-eoe.pages.dev/)
+- [Live Site URL here](https://faq-accordion-live.pages.dev/)
 
 ## My process
 
