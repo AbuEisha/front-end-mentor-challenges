@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL Here](https://product-list-with-cart-ai9.pages.dev/)
+- [Live Site URL Here](https://product-list-with-cart-live.pages.dev/)
 
 ## My process
 
