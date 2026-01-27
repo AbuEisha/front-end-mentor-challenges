@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL here](https://intro-component-with-signup-form-ac5.pages.dev/)
+- [Live Site URL here](https://intro-component-with-signup-form-live.pages.dev/)
 
 ## My process
 
