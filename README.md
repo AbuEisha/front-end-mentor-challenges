@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Links
 
-- [Solution URL Here](https://your-solution-url.com)
-- [Live Site URL Here](https://your-live-site-url.com)
+- [Solution URL Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/mortgage-repayment-calculator)
+- [Live Site URL Here](https://mortgage-repayment-calculator-live.pages.dev/)
 
 ## My process
 
