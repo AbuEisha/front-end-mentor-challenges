@@ -14,6 +14,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Browser Extension Manager UI Challenge](#browser-extension-manager-ui-challenge)
   - [Conference Ticket Generator Challenge](#conference-ticket-generator-challenge)
   - [Product List With Cart Challenge](#product-list-with-cart-challenge)
+  - [Mortgage Repayment Calculator Challenge](#mortgage-repayment-calculator-challenge)
 
 ## Newbie Challenges
 
@@ -74,3 +75,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/product-list-with-cart)
 
 - [Solution Live URL Here](https://product-list-with-cart-live.pages.dev/)
+
+### Mortgage Repayment Calculator Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/mortgage-repayment-calculator-Galx1LXK73)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/mortgage-repayment-calculator)
+
+- [Solution Live URL Here](https://mortgage-repayment-calculator-live.pages.dev/)
