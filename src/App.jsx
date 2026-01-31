@@ -510,7 +510,7 @@ export default function App() {
                   color: "text.primary",
                   borderRadius: "1.75rem",
                   textTransform: "none",
-                  minWidth: "315px",
+                  width: "315px",
                   maxWidth: "100%",
                   fontSize: "1rem",
                   fontWeight: 700,
