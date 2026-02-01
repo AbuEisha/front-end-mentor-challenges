@@ -83,10 +83,10 @@ export default function App() {
   });
 
   const [inputsErrors, setInputsErrors] = useState({
-    amountError: false,
-    termError: false,
-    rateError: false,
-    typeError: false,
+    mortgageAmountError: false,
+    mortgageTermError: false,
+    interestRateError: false,
+    mortgageTypeError: false,
   });
 
   const [mortgageRepayments, setMortgageRepayments] = useState({
@@ -96,6 +96,10 @@ export default function App() {
 
   const handleChange = (e, valueName) => {
     setFormInputs({ ...formInputs, [valueName]: e.target.value });
+
+    if (inputsErrors[`${valueName}Error`]) {
+      setInputsErrors({ ...inputsErrors, [`${valueName}Error`]: false });
+    }
   };
 
   const handleClearAll = (e) => {
@@ -107,10 +111,10 @@ export default function App() {
       mortgageType: "",
     });
     setInputsErrors({
-      amountError: false,
-      termError: false,
-      rateError: false,
-      typeError: false,
+      mortgageAmountError: false,
+      mortgageTermError: false,
+      interestRateError: false,
+      mortgageTypeError: false,
     });
     setShowResult(false);
   };
@@ -141,10 +145,12 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrorArr = {
-      amountError: formInputs.mortgageAmount === "",
-      termError: formInputs.mortgageTerm === "",
-      rateError: formInputs.interestRate === "",
-      typeError: formInputs.mortgageType === "",
+      mortgageAmountError: formInputs.mortgageAmount === "",
+      mortgageTermError:
+        formInputs.mortgageTerm === "" || formInputs.mortgageTerm <= "0",
+      interestRateError:
+        formInputs.interestRate === "" || formInputs.interestRate <= "0",
+      mortgageTypeError: formInputs.mortgageType === "",
     };
 
     setInputsErrors(newErrorArr);
@@ -243,12 +249,19 @@ export default function App() {
                     inputMode="numeric"
                     id="mortgage-amount"
                     value={formInputs.mortgageAmount}
-                    error={inputsErrors.amountError}
+                    error={inputsErrors.mortgageAmountError}
                     onValueChange={(values) => {
                       setFormInputs({
                         ...formInputs,
                         mortgageAmount: values.value,
                       });
+
+                      if (inputsErrors.mortgageAmountError) {
+                        setInputsErrors({
+                          ...inputsErrors,
+                          mortgageAmountError: false,
+                        });
+                      }
                     }}
                     thousandSeparator=","
                     decimalScale={2}
@@ -260,12 +273,12 @@ export default function App() {
                           "&&&&": { marginBlockStart: 0 },
                           marginInline: "0",
                           minHeight: "100%",
-                          backgroundColor: inputsErrors.amountError
+                          backgroundColor: inputsErrors.mortgageAmountError
                             ? "error.main"
                             : "background.default",
                           paddingInline: "1.1rem",
                           "& p": {
-                            color: inputsErrors.amountError
+                            color: inputsErrors.mortgageAmountError
                               ? "white"
                               : "text.secondary.main",
                             fontWeight: 700,
@@ -277,7 +290,7 @@ export default function App() {
                     }
                   />
                 </FormControl>
-                {inputsErrors.amountError && (
+                {inputsErrors.mortgageAmountError && (
                   <Typography
                     variant="body2"
                     color="error.main"
@@ -307,7 +320,7 @@ export default function App() {
                     <StyledFilledInput
                       type="number"
                       id="mortgage-term"
-                      error={inputsErrors.termError}
+                      error={inputsErrors.mortgageTermError}
                       value={formInputs.mortgageTerm}
                       onChange={(e) => handleChange(e, "mortgageTerm")}
                       endAdornment={
@@ -317,12 +330,12 @@ export default function App() {
                             "&&&&": { marginBlockStart: 0 },
                             marginInline: "0",
                             minHeight: "100%",
-                            backgroundColor: inputsErrors.termError
+                            backgroundColor: inputsErrors.mortgageTermError
                               ? "error.main"
                               : "background.default",
                             paddingInline: "1.1rem",
                             "& p": {
-                              color: inputsErrors.termError
+                              color: inputsErrors.mortgageTermError
                                 ? "white"
                                 : "text.secondary.main",
                               fontWeight: 700,
@@ -334,7 +347,7 @@ export default function App() {
                       }
                     />
                   </FormControl>
-                  {inputsErrors.termError && (
+                  {inputsErrors.mortgageTermError && (
                     <Typography
                       variant="body2"
                       color="error.main"
@@ -358,7 +371,7 @@ export default function App() {
                     <StyledFilledInput
                       type="number"
                       id="interest-rate"
-                      error={inputsErrors.rateError}
+                      error={inputsErrors.interestRateError}
                       value={formInputs.interestRate}
                       onChange={(e) => handleChange(e, "interestRate")}
                       endAdornment={
@@ -368,12 +381,12 @@ export default function App() {
                             "&&&&": { marginBlockStart: 0 },
                             marginInline: "0",
                             minHeight: "100%",
-                            backgroundColor: inputsErrors.rateError
+                            backgroundColor: inputsErrors.interestRateError
                               ? "error.main"
                               : "background.default",
                             paddingInline: "1.1rem",
                             "& p": {
-                              color: inputsErrors.rateError
+                              color: inputsErrors.interestRateError
                                 ? "white"
                                 : "text.secondary.main",
                               fontWeight: 700,
@@ -385,7 +398,7 @@ export default function App() {
                       }
                     />
                   </FormControl>
-                  {inputsErrors.rateError && (
+                  {inputsErrors.interestRateError && (
                     <Typography
                       variant="body2"
                       color="error.main"
@@ -487,7 +500,7 @@ export default function App() {
                     }}
                   />
                 </RadioGroup>
-                {inputsErrors.typeError && (
+                {inputsErrors.mortgageTypeError && (
                   <Typography
                     variant="body2"
                     color="error.main"
