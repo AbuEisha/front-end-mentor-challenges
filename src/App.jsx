@@ -322,6 +322,7 @@ export default function App() {
               <IconButton
                 aria-label="calculate-age"
                 size="large"
+                type="submit"
                 onClick={handleCalculateAge}
                 sx={{
                   width: { xs: "68px", md: "98px" },
