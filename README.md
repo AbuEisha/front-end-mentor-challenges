@@ -16,6 +16,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Product List With Cart Challenge](#product-list-with-cart-challenge)
   - [Mortgage Repayment Calculator Challenge](#mortgage-repayment-calculator-challenge)
   - [Age Calculator App Challenge](#age-calculator-app-challenge)
+  - [News Homepage Challenge](#news-homepage-challenge)
 
 ## Newbie Challenges
 
@@ -92,3 +93,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/age-calculator-app)
 
 - [Solution Live URL Here](https://age-calculator-app-live.pages.dev/)
+
+### News Homepage Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/news-homepage-H6SWTa1MFl)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/news-homepage)
+
+- [Solution Live URL Here](https://news-homepage-live.pages.dev/)
