@@ -47,10 +47,17 @@ export default function App(props) {
       <List sx={{ textAlign: "start", marginBlockStart: "3rem" }}>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton
+            <Button
+              disableRipple
               sx={{
                 paddingInline: 0,
+                height: "48px",
+                paddingBlock: "0.5rem",
                 color: "primary.dark",
+                textTransform: "none",
+                fontSize: "16px",
+                justifyContent: "flex-start",
+                flexGrow: 1,
                 "&:hover": {
                   backgroundColor: "transparent",
                   color: "primary.main",
@@ -61,8 +68,8 @@ export default function App(props) {
                 },
               }}
             >
-              <ListItemText primary={item} />
-            </ListItemButton>
+              {item}
+            </Button>
           </ListItem>
         ))}
       </List>
@@ -183,7 +190,7 @@ export default function App(props) {
                     <Grid size={{ xs: 12, md: 6 }}>
                       <Typography
                         variant="h1"
-                        fontSize={{ xs: "2.5rem", md: "3.75rem" }}
+                        fontSize={{ xs: "2.5rem", md: "3.5rem" }}
                         fontWeight={800}
                         lineHeight={1}
                         color="primary.dark"
@@ -227,7 +234,6 @@ export default function App(props) {
                 </Grid>
                 <Grid size={{ xs: 12, md: 4 }}>
                   <Box
-                    component="aside"
                     padding={{ xs: "1.85rem 1.25rem", md: "2rem 1.25rem" }}
                     sx={{
                       backgroundColor: "primary.dark",
