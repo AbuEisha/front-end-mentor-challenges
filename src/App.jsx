@@ -214,6 +214,8 @@ export default function App() {
                   padding={{ xs: "1rem", sm: "2rem" }}
                   color="hsl(0, 100%, 100%)"
                   letterSpacing="3px"
+                  boxShadow={{ lg: "10px 10px 54px rgb(0 0 0 / 25%)" }}
+                  borderRadius={{ lg: "16px" }}
                 >
                   <Box component="img" src={cardLogo} alt="Card Logo" />
 
@@ -249,7 +251,11 @@ export default function App() {
                 </Box>
               </Box>
               <Box order={{ xs: 0, md: 1 }}>
-                <Box position="relative">
+                <Box
+                  position="relative"
+                  boxShadow={{ lg: "10px 10px 54px rgb(0 0 0 / 25%)" }}
+                  borderRadius={{ lg: "16px" }}
+                >
                   <Box
                     component="img"
                     src={cardBgBack}
@@ -371,6 +377,9 @@ export default function App() {
                               : "hsl(212, 12%, 71%)",
                           },
                         },
+                        "& ::placeholder": {
+                          color: "hsl(212, 12%, 71%)",
+                        },
                         "&.Mui-focused": {
                           "& .MuiOutlinedInput-notchedOutline": {
                             border: "1px solid transparent",
@@ -436,6 +445,9 @@ export default function App() {
                               ? "hsl(0, 100%, 66%)"
                               : "hsl(212, 12%, 71%)",
                           },
+                        },
+                        "& ::placeholder": {
+                          color: "hsl(212, 12%, 71%)",
                         },
                         "&.Mui-focused": {
                           "& .MuiOutlinedInput-notchedOutline": {
@@ -509,6 +521,9 @@ export default function App() {
                                   : "hsl(212, 12%, 71%)",
                               },
                             },
+                            "& ::placeholder": {
+                              color: "hsl(212, 12%, 71%)",
+                            },
                             "&.Mui-focused": {
                               "& .MuiOutlinedInput-notchedOutline": {
                                 border: "1px solid transparent",
@@ -550,6 +565,9 @@ export default function App() {
                                   ? "hsl(0, 100%, 66%)"
                                   : "hsl(212, 12%, 71%)",
                               },
+                            },
+                            "& ::placeholder": {
+                              color: "hsl(212, 12%, 71%)",
                             },
                             "&.Mui-focused": {
                               "& .MuiOutlinedInput-notchedOutline": {
@@ -619,6 +637,9 @@ export default function App() {
                                 ? "hsl(0, 100%, 66%)"
                                 : "hsl(212, 12%, 71%)",
                             },
+                          },
+                          "& ::placeholder": {
+                            color: "hsl(212, 12%, 71%)",
                           },
                           "&.Mui-focused": {
                             "& .MuiOutlinedInput-notchedOutline": {
