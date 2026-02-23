@@ -17,6 +17,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Mortgage Repayment Calculator Challenge](#mortgage-repayment-calculator-challenge)
   - [Age Calculator App Challenge](#age-calculator-app-challenge)
   - [News Homepage Challenge](#news-homepage-challenge)
+  - [Interactive Card Details Form Challenge](#interactive-card-details-form-challenge)
 
 ## Newbie Challenges
 
@@ -101,3 +102,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/news-homepage)
 
 - [Solution Live URL Here](https://news-homepage-live.pages.dev/)
+
+### Interactive Card Details Form Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/interactive-card-details-form-XpS8cKZDWw)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/interactive-card-details-form)
+
+- [Solution Live URL Here](https://interactive-card-details-form-live.pages.dev/)
