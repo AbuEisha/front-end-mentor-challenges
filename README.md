@@ -18,6 +18,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Age Calculator App Challenge](#age-calculator-app-challenge)
   - [News Homepage Challenge](#news-homepage-challenge)
   - [Interactive Card Details Form Challenge](#interactive-card-details-form-challenge)
+  - [Intro Section With Dropdown Navigation Challenge](#intro-section-with-dropdown-navigation-challenge)
 
 ## Newbie Challenges
 
@@ -110,3 +111,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/interactive-card-details-form)
 
 - [Solution Live URL Here](https://interactive-card-details-form-live.pages.dev/)
+
+### Intro Section With Dropdown Navigation Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/intro-section-with-dropdown-navigation-ryaPetHE5)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/intro-section-with-dropdown-navigation)
+
+- [Solution Live URL Here](https://intro-section-with-dropdown-navigation-live.pages.dev/)
