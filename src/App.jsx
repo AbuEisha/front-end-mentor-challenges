@@ -149,6 +149,7 @@ function App(props) {
       <CssBaseline />
       <AppBar
         component="nav"
+        aria-label="Main navigation"
         sx={{ backgroundColor: "transparent", boxShadow: "none" }}
       >
         <Toolbar
@@ -279,7 +280,8 @@ function App(props) {
         }}
         slotProps={{
           paper: {
-            "aria-label": "Navigation menu",
+            role: "navigation",
+            "aria-label": "Mobile navigation",
           },
         }}
       >
