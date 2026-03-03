@@ -6,6 +6,7 @@ import {
   Drawer,
   IconButton,
   List,
+  ListItem,
   Toolbar,
   Typography,
   Button,
@@ -51,40 +52,41 @@ function App(props) {
       <IconButton sx={{ padding: 0 }} onClick={handleDrawerToggle}>
         <CloseMenuIcon />
       </IconButton>
-      <List component="div" sx={{ marginBlockStart: "1rem" }}>
-        {navItems.map((item) =>
-          item.dropdownItems ? (
-            <CustomDropdownList
-              key={item.name}
-              name={item.name}
-              dropdownItems={item.dropdownItems}
-            />
-          ) : (
-            <Button
-              key={item.name}
-              fullWidth
-              disableRipple
-              sx={{
-                paddingBlock: ".5rem",
-                paddingInline: 0,
-                fontSize: "15px",
-                textTransform: "none",
-                justifyContent: "flex-start",
-                color: "hsl(0, 0%, 41%)",
-                "&:hover": {
-                  backgroundColor: "transparent",
-                  color: "hsl(0, 0%, 8%)",
-                },
-                "&.Mui-focusVisible": {
-                  backgroundColor: "transparent",
-                  color: "hsl(0, 0%, 8%)",
-                },
-              }}
-            >
-              {item.name}
-            </Button>
-          ),
-        )}
+
+      <List sx={{ marginBlockStart: "1rem" }}>
+        {navItems.map((item) => (
+          <ListItem key={item.name} disablePadding>
+            {item.dropdownItems ? (
+              <CustomDropdownList
+                name={item.name}
+                dropdownItems={item.dropdownItems}
+              />
+            ) : (
+              <Button
+                fullWidth
+                disableRipple
+                sx={{
+                  paddingBlock: ".5rem",
+                  paddingInline: 0,
+                  fontSize: "15px",
+                  textTransform: "none",
+                  justifyContent: "flex-start",
+                  color: "hsl(0, 0%, 41%)",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    color: "hsl(0, 0%, 8%)",
+                  },
+                  "&.Mui-focusVisible": {
+                    backgroundColor: "transparent",
+                    color: "hsl(0, 0%, 8%)",
+                  },
+                }}
+              >
+                {item.name}
+              </Button>
+            )}
+          </ListItem>
+        ))}
       </List>
       <Stack>
         <Button
@@ -160,7 +162,8 @@ function App(props) {
           <LogoIcon />
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            aria-label={mobileOpen ? "close drawer" : "open drawer"}
+            aria-expanded={mobileOpen}
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ padding: 0, m: 0, display: { md: "none" } }}
@@ -169,44 +172,45 @@ function App(props) {
           </IconButton>
 
           <Box
+            component="nav"
             sx={{
               display: { xs: "none", md: "flex", alignItems: "center" },
               flexGrow: 1,
             }}
           >
-            <List component="div" sx={{ display: "flex", flexGrow: 1 }}>
-              {navItems.map((item) =>
-                item.dropdownItems ? (
-                  <CustomDropdownList
-                    key={item.name}
-                    name={item.name}
-                    dropdownItems={item.dropdownItems}
-                  />
-                ) : (
-                  <Button
-                    key={item.name}
-                    disableRipple
-                    sx={{
-                      paddingInline: "1.25rem",
-                      marginInlineStart: ".25rem",
-                      fontSize: "15px",
-                      textTransform: "none",
-                      justifyContent: "flex-start",
-                      color: "hsl(0, 0%, 41%)",
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                        color: "hsl(0, 0%, 8%)",
-                      },
-                      "&.Mui-focusVisible": {
-                        backgroundColor: "transparent",
-                        color: "hsl(0, 0%, 8%)",
-                      },
-                    }}
-                  >
-                    {item.name}
-                  </Button>
-                ),
-              )}
+            <List sx={{ display: "flex", flexGrow: 1 }}>
+              {navItems.map((item) => (
+                <ListItem key={item.name} disablePadding sx={{ width: "auto" }}>
+                  {item.dropdownItems ? (
+                    <CustomDropdownList
+                      name={item.name}
+                      dropdownItems={item.dropdownItems}
+                    />
+                  ) : (
+                    <Button
+                      disableRipple
+                      sx={{
+                        paddingInline: "1.25rem",
+                        marginInlineStart: ".25rem",
+                        fontSize: "15px",
+                        textTransform: "none",
+                        justifyContent: "flex-start",
+                        color: "hsl(0, 0%, 41%)",
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                          color: "hsl(0, 0%, 8%)",
+                        },
+                        "&.Mui-focusVisible": {
+                          backgroundColor: "transparent",
+                          color: "hsl(0, 0%, 8%)",
+                        },
+                      }}
+                    >
+                      {item.name}
+                    </Button>
+                  )}
+                </ListItem>
+              ))}
             </List>
             <Stack direction="row" gap={2}>
               <Button
@@ -271,6 +275,11 @@ function App(props) {
             boxSizing: "border-box",
             width: drawerWidth,
             backgroundColor: "hsl(0, 0%, 98%)",
+          },
+        }}
+        slotProps={{
+          paper: {
+            "aria-label": "Navigation menu",
           },
         }}
       >
