@@ -28,8 +28,8 @@ Users should be able to:
 
 ### Links
 
-- [Solution URL Here](https://your-solution-url.com)
-- [Live Site URL Here](https://your-live-site-url.com)
+- [Solution URL Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/time-tracking-dashboard)
+- [Live Site URL Here](https://time-tracking-dashboard-live.pages.dev/)
 
 ## My process
 
