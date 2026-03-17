@@ -15,7 +15,7 @@ import SectionCard from "./SectionCard";
 const sections = ["Work", "Play", "Study", "Exercise", "Social", "Self Care"];
 
 function App() {
-  const [alignment, setAlignment] = useState("daily");
+  const [alignment, setAlignment] = useState("weekly");
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);

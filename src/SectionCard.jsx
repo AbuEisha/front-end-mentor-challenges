@@ -78,6 +78,7 @@ export default function SectionCard({ title, index, alignment }) {
             {title}
           </Typography>
           <IconButton
+            aria-label="Additional options"
             sx={{
               padding: 0,
               "&:hover": { "& svg": { "& path": { fill: "white" } } },
