@@ -19,6 +19,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [News Homepage Challenge](#news-homepage-challenge)
   - [Interactive Card Details Form Challenge](#interactive-card-details-form-challenge)
   - [Intro Section With Dropdown Navigation Challenge](#intro-section-with-dropdown-navigation-challenge)
+  - [Time Tracking Dashboard Challenge](#time-tracking-dashboard-challenge)
 
 ## Newbie Challenges
 
@@ -119,3 +120,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/intro-section-with-dropdown-navigation)
 
 - [Solution Live URL Here](https://intro-section-with-dropdown-navigation-live.pages.dev/)
+
+### Time Tracking Dashboard Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/time-tracking-dashboard-UIQ7167Jw)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/time-tracking-dashboard)
+
+- [Solution Live URL Here](https://time-tracking-dashboard-live.pages.dev/)
