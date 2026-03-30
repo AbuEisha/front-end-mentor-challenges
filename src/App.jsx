@@ -62,7 +62,7 @@ function App() {
             fontWeight={800}
             letterSpacing="5px"
           >
-            {`Advice #${adviceDetails.adviceNum}`}
+            {`Advice #${adviceDetails.adviceNum || "71"}`}
           </Typography>
           <Typography
             variant="h1"
@@ -72,7 +72,10 @@ function App() {
             color="hsl(193, 38%, 86%)"
             marginBlock={{ xs: "1.5rem", sm: "1.5rem 2.5rem" }}
           >
-            <q>{adviceDetails.advice}</q>
+            <q>
+              {adviceDetails.advice ||
+                "It is easy to sit up and take notice, what's difficult is getting up and taking action."}
+            </q>
           </Typography>
           <Box
             component="img"
