@@ -20,6 +20,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Interactive Card Details Form Challenge](#interactive-card-details-form-challenge)
   - [Intro Section With Dropdown Navigation Challenge](#intro-section-with-dropdown-navigation-challenge)
   - [Time Tracking Dashboard Challenge](#time-tracking-dashboard-challenge)
+  - [Advice Generator App Challenge](#advice-generator-app-challenge)
 
 ## Newbie Challenges
 
@@ -128,3 +129,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/time-tracking-dashboard)
 
 - [Solution Live URL Here](https://time-tracking-dashboard-live.pages.dev/)
+
+### Advice Generator App Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/advice-generator-app-QdUG-13db)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/advice-generator-app)
+
+- [Solution Live URL Here](https://advice-generator-app-live.pages.dev/)
