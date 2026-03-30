@@ -18,7 +18,7 @@ function App() {
   async function getAdvice(id = null) {
     try {
       const response = await fetch(
-        `https://api.adviceslip.com/advice${typeof id == "number" ? "/" + id : ""}`,
+        `https://api.adviceslip.com/advice${typeof id === "number" ? "/" + id : ""}`,
       );
       if (!response.ok) {
         throw Error("Failed To Get Advice!");
