@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url(./assets/fonts/DM_Sans/static/DMSans-Light.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url(./assets/fonts/DM_Sans/static/DMSans-Medium.ttf);
+  font-weight: 500;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url(./assets/fonts/DM_Sans/static/DMSans-SemiBold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url(./assets/fonts/DM_Sans/static/DMSans-SemiBoldItalic.ttf);
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url(./assets/fonts/DM_Sans/static/DMSans-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url(./assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf);
+  font-weight: 700;
+}
+
+@keyframes circle-loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes wave-loading {
+  100% {
+    transform: translateY(-10px);
+  }
+}
