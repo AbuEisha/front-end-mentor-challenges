@@ -13,7 +13,13 @@ import logo from "../assets/images/logo.svg";
 import unitsIcon from "../assets/images/icon-units.svg";
 import dropdownIcon from "../assets/images/icon-dropdown.svg";
 import checkmarkIcon from "../assets/images/icon-checkmark.svg";
-export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
+export default function AppHeader({
+  unitsSystem,
+  changeUnitsSystem,
+  handleChangeTemperatureUnit,
+  handleChangeWindUnit,
+  handleChangePrecipitationUnit,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
 
@@ -28,13 +34,16 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
     handleCloseMenu();
   };
 
-  const handleSetMetric = () => {
-    if (unitsSystem !== "metric") changeUnitsSystem();
+  const handleChangeTempUnit = (unit) => {
+    handleChangeTemperatureUnit(unit);
     handleCloseMenu();
   };
-
-  const handleSetImperial = () => {
-    if (unitsSystem !== "imperial") changeUnitsSystem();
+  const handleChangeWind = (unit) => {
+    handleChangeWindUnit(unit);
+    handleCloseMenu();
+  };
+  const handleChangePrecipitation = (unit) => {
+    handleChangePrecipitationUnit(unit);
     handleCloseMenu();
   };
   return (
@@ -85,6 +94,8 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
           anchorEl={anchorEl}
           open={openMenu}
           onClose={handleCloseMenu}
+          role="menu"
+          aria-label="Units Settings"
           slotProps={{
             list: {
               "aria-labelledby": "units-system-toggle",
@@ -124,7 +135,7 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
               },
             }}
           >
-            {`Switch to ${unitsSystem === "metric" ? "Imperial" : "Metric"}`}
+            {`Switch to ${unitsSystem.system === "metric" ? "Imperial" : "Metric"}`}
           </MenuItem>
           <ListSubheader
             sx={{
@@ -139,34 +150,12 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
             Temperature
           </ListSubheader>
           <MenuItem
-            onClick={handleSetMetric}
+            onClick={() => handleChangeTempUnit("celsius")}
             sx={{
               height: "40px",
               padding: "8px",
               backgroundColor:
-                unitsSystem === "metric" ? "hsl(243, 23%, 24%)" : "transparent",
-              color: "hsl(0, 0%, 100%)",
-              fontSize: "14px",
-              fontWeight: 500,
-              borderRadius: "6px",
-              justifyContent: "space-between",
-              "&:hover": {
-                backgroundColor: "hsl(243, 23%, 24%)",
-              },
-            }}
-          >
-            Celsius (°C)
-            {unitsSystem === "metric" && (
-              <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
-            )}
-          </MenuItem>
-          <MenuItem
-            onClick={handleSetImperial}
-            sx={{
-              height: "40px",
-              padding: "8px",
-              backgroundColor:
-                unitsSystem === "imperial"
+                unitsSystem.units.temp === "celsius"
                   ? "hsl(243, 23%, 24%)"
                   : "transparent",
               color: "hsl(0, 0%, 100%)",
@@ -177,10 +166,40 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
               "&:hover": {
                 backgroundColor: "hsl(243, 23%, 24%)",
               },
+              "&.Mui-focusVisible": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
             }}
           >
-            Fahrenheit (°F)
-            {unitsSystem === "imperial" && (
+            {`Celsius (°C)`}
+            {unitsSystem.units.temp === "celsius" && (
+              <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
+            )}
+          </MenuItem>
+          <MenuItem
+            onClick={() => handleChangeTempUnit("fahrenheit")}
+            sx={{
+              height: "40px",
+              padding: "8px",
+              backgroundColor:
+                unitsSystem.units.temp === "fahrenheit"
+                  ? "hsl(243, 23%, 24%)"
+                  : "transparent",
+              color: "hsl(0, 0%, 100%)",
+              fontSize: "14px",
+              fontWeight: 500,
+              borderRadius: "6px",
+              justifyContent: "space-between",
+              "&:hover": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
+              "&.Mui-focusVisible": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
+            }}
+          >
+            {`Fahrenheit (°F)`}
+            {unitsSystem.units.temp === "fahrenheit" && (
               <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
             )}
           </MenuItem>
@@ -198,34 +217,12 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
             Wind Speed
           </ListSubheader>
           <MenuItem
-            onClick={handleSetMetric}
+            onClick={() => handleChangeWind("km/h")}
             sx={{
               height: "40px",
               padding: "8px",
               backgroundColor:
-                unitsSystem === "metric" ? "hsl(243, 23%, 24%)" : "transparent",
-              color: "hsl(0, 0%, 100%)",
-              fontSize: "14px",
-              fontWeight: 500,
-              borderRadius: "6px",
-              justifyContent: "space-between",
-              "&:hover": {
-                backgroundColor: "hsl(243, 23%, 24%)",
-              },
-            }}
-          >
-            km/h
-            {unitsSystem === "metric" && (
-              <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
-            )}
-          </MenuItem>
-          <MenuItem
-            onClick={handleSetImperial}
-            sx={{
-              height: "40px",
-              padding: "8px",
-              backgroundColor:
-                unitsSystem === "imperial"
+                unitsSystem.units.wind === "km/h"
                   ? "hsl(243, 23%, 24%)"
                   : "transparent",
               color: "hsl(0, 0%, 100%)",
@@ -236,10 +233,40 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
               "&:hover": {
                 backgroundColor: "hsl(243, 23%, 24%)",
               },
+              "&.Mui-focusVisible": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
+            }}
+          >
+            {`km/h`}
+            {unitsSystem.units.wind === "km/h" && (
+              <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
+            )}
+          </MenuItem>
+          <MenuItem
+            onClick={() => handleChangeWind("mph")}
+            sx={{
+              height: "40px",
+              padding: "8px",
+              backgroundColor:
+                unitsSystem.units.wind === "mph"
+                  ? "hsl(243, 23%, 24%)"
+                  : "transparent",
+              color: "hsl(0, 0%, 100%)",
+              fontSize: "14px",
+              fontWeight: 500,
+              borderRadius: "6px",
+              justifyContent: "space-between",
+              "&:hover": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
+              "&.Mui-focusVisible": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
             }}
           >
             mph
-            {unitsSystem === "imperial" && (
+            {unitsSystem.units.wind === "mph" && (
               <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
             )}
           </MenuItem>
@@ -257,34 +284,12 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
             Precipitation
           </ListSubheader>
           <MenuItem
-            onClick={handleSetMetric}
+            onClick={() => handleChangePrecipitation("mm")}
             sx={{
               height: "40px",
               padding: "8px",
               backgroundColor:
-                unitsSystem === "metric" ? "hsl(243, 23%, 24%)" : "transparent",
-              color: "hsl(0, 0%, 100%)",
-              fontSize: "14px",
-              fontWeight: 500,
-              borderRadius: "6px",
-              justifyContent: "space-between",
-              "&:hover": {
-                backgroundColor: "hsl(243, 23%, 24%)",
-              },
-            }}
-          >
-            Millimeters (mm)
-            {unitsSystem === "metric" && (
-              <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
-            )}
-          </MenuItem>
-          <MenuItem
-            onClick={handleSetImperial}
-            sx={{
-              height: "40px",
-              padding: "8px",
-              backgroundColor:
-                unitsSystem === "imperial"
+                unitsSystem.units.precipitation === "mm"
                   ? "hsl(243, 23%, 24%)"
                   : "transparent",
               color: "hsl(0, 0%, 100%)",
@@ -295,10 +300,40 @@ export default function AppHeader({ unitsSystem, changeUnitsSystem }) {
               "&:hover": {
                 backgroundColor: "hsl(243, 23%, 24%)",
               },
+              "&.Mui-focusVisible": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
             }}
           >
-            Inches (in)
-            {unitsSystem === "imperial" && (
+            {`Millimeters (mm)`}
+            {unitsSystem.units.precipitation === "mm" && (
+              <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
+            )}
+          </MenuItem>
+          <MenuItem
+            onClick={() => handleChangePrecipitation("inch")}
+            sx={{
+              height: "40px",
+              padding: "8px",
+              backgroundColor:
+                unitsSystem.units.precipitation === "inch"
+                  ? "hsl(243, 23%, 24%)"
+                  : "transparent",
+              color: "hsl(0, 0%, 100%)",
+              fontSize: "14px",
+              fontWeight: 500,
+              borderRadius: "6px",
+              justifyContent: "space-between",
+              "&:hover": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
+              "&.Mui-focusVisible": {
+                backgroundColor: "hsl(243, 23%, 24%)",
+              },
+            }}
+          >
+            {`Inches (in)`}
+            {unitsSystem.units.precipitation === "inch" && (
               <Box component="img" src={checkmarkIcon} alt="Checkmark Icon" />
             )}
           </MenuItem>

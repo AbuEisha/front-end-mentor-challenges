@@ -12,20 +12,23 @@ import Searchbar from "./components/Searchbar";
 import WeatherDetails from "./components/WeatherDetails";
 
 function App() {
-  const [unitsSystem, setUnitsSystem] = useState("metric");
-  const [cityName, setCityName] = useState("berlin");
+  const [unitsSystem, setUnitsSystem] = useState({
+    system: "metric",
+    units: { temp: "celsius", wind: "km/h", precipitation: "mm" },
+  });
+  const [cityName, setCityName] = useState("");
   const [choosingDay, setChoosingDay] = useState(dayjs().format("dddd"));
   const [cityWeather, setCityWeather] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [serverError, setServerError] = useState(null);
   const [cityError, setCityError] = useState(false);
-  const [searchedCities, setSearchedCities] = useState([]);
+  const [searchedCities, setSearchedCities] = useState(["berlin"]);
 
   useEffect(() => {
     if (cityWeather.city) getCityWeather(cityWeather.city);
   }, [unitsSystem]);
   useEffect(() => {
-    getCityWeather(cityName);
+    getCityWeather("berlin");
   }, []);
 
   const filteredCities = useMemo(
@@ -56,7 +59,7 @@ function App() {
       const { name, country, latitude, longitude } = cityInfo.results[0];
 
       const response2 = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation,weather_code&temperature_unit=${unitsSystem === "metric" ? "celsius" : "fahrenheit"}&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=7`,
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation,weather_code&temperature_unit=${unitsSystem.units.temp}&wind_speed_unit=${unitsSystem.units.wind.replace("/", "")}&precipitation_unit=${unitsSystem.units.precipitation}&timezone=auto&forecast_days=7`,
       );
 
       const weatherData = await response2.json();
@@ -70,7 +73,7 @@ function App() {
       });
 
       const isFound = searchedCities.filter(
-        (city) => city.toLowerCase() === name.toLowerCase(),
+        (searchedCity) => searchedCity.toLowerCase() === name.toLowerCase(),
       );
       if (isFound.length === 0) setSearchedCities((prev) => [...prev, name]);
       setCityName("");
@@ -97,7 +100,114 @@ function App() {
   };
 
   const handleChangeUnits = () => {
-    setUnitsSystem((prev) => (prev === "metric" ? "imperial" : "metric"));
+    setUnitsSystem((prev) => {
+      if (prev.system === "metric")
+        return {
+          ...prev,
+          system: "imperial",
+          units: { temp: "fahrenheit", wind: "mph", precipitation: "inch" },
+        };
+      else
+        return {
+          ...prev,
+          system: "metric",
+          units: { temp: "celsius", wind: "km/h", precipitation: "mm" },
+        };
+    });
+  };
+
+  const handleChangeTemperatureUnit = (unit) => {
+    setUnitsSystem((prev) => {
+      if (
+        prev.units.wind === "km/h" &&
+        prev.units.precipitation === "mm" &&
+        unit === "celsius"
+      ) {
+        return {
+          ...prev,
+          system: "metric",
+          units: { temp: "celsius", wind: "km/h", precipitation: "mm" },
+        };
+      } else if (
+        prev.units.wind === "mph" &&
+        prev.units.precipitation === "inch" &&
+        unit === "fahrenheit"
+      ) {
+        return {
+          ...prev,
+          system: "imperial",
+          units: { temp: "fahrenheit", wind: "mph", precipitation: "inch" },
+        };
+      } else
+        return {
+          ...prev,
+          units: {
+            ...prev.units,
+            temp: unit === "celsius" ? "celsius" : "fahrenheit",
+          },
+        };
+    });
+  };
+  const handleChangeWindUnit = (unit) => {
+    setUnitsSystem((prev) => {
+      if (
+        prev.units.temp === "celsius" &&
+        prev.units.precipitation === "mm" &&
+        unit === "km/h"
+      ) {
+        return {
+          ...prev,
+          system: "metric",
+          units: { temp: "celsius", wind: "km/h", precipitation: "mm" },
+        };
+      } else if (
+        prev.units.temp === "fahrenheit" &&
+        prev.units.precipitation === "inch" &&
+        unit === "mph"
+      ) {
+        return {
+          ...prev,
+          system: "imperial",
+          units: { temp: "fahrenheit", wind: "mph", precipitation: "inch" },
+        };
+      } else
+        return {
+          ...prev,
+          units: { ...prev.units, wind: unit === "km/h" ? "km/h" : "mph" },
+        };
+    });
+  };
+  const handleChangePrecipitationUnit = (unit) => {
+    setUnitsSystem((prev) => {
+      if (
+        prev.units.wind === "km/h" &&
+        prev.units.temp === "celsius" &&
+        unit === "mm"
+      ) {
+        return {
+          ...prev,
+          system: "metric",
+          units: { temp: "celsius", wind: "km/h", precipitation: "mm" },
+        };
+      } else if (
+        prev.units.wind === "mph" &&
+        prev.units.temp === "fahrenheit" &&
+        unit === "inch"
+      ) {
+        return {
+          ...prev,
+          system: "imperial",
+          units: { temp: "fahrenheit", wind: "mph", precipitation: "inch" },
+        };
+      } else
+        return {
+          ...prev,
+          units: {
+            ...prev.units,
+            precipitation: unit === "mm" ? "mm" : "inch",
+          },
+        };
+    });
   };
   const handleChangeDay = (day) => {
     setChoosingDay(day);
@@ -115,6 +225,9 @@ function App() {
         <AppHeader
           unitsSystem={unitsSystem}
           changeUnitsSystem={handleChangeUnits}
+          handleChangeTemperatureUnit={handleChangeTemperatureUnit}
+          handleChangeWindUnit={handleChangeWindUnit}
+          handleChangePrecipitationUnit={handleChangePrecipitationUnit}
         />
 
         {serverError && (

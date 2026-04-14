@@ -48,7 +48,7 @@ export default function Searchbar({
         color="hsl(0, 0%, 100%)"
         marginBlockEnd={{ xs: "3rem", lg: "4rem" }}
       >
-        How's the sky looking today?
+        {`How's the sky looking today?`}
       </Typography>
       <Stack
         component="form"
@@ -143,7 +143,11 @@ export default function Searchbar({
 
                 {!searchLoading &&
                   (filteredCities.length !== 0 ? (
-                    <List sx={{ padding: "8px" }}>
+                    <List
+                      sx={{ padding: "8px" }}
+                      role="listbox"
+                      aria-label="Search Results"
+                    >
                       {filteredCities.map((city, index) => (
                         <ListItem key={index} sx={{ padding: "0" }}>
                           <Button
@@ -153,7 +157,7 @@ export default function Searchbar({
                               width: "100%",
                               height: "40px",
                               color: "hsl(0, 0%, 100%)",
-                              textTransform: "none",
+                              textTransform: "capitalize",
                               justifyContent: "flex-start",
                               border: "1px solid transparent",
                               "&:hover": {

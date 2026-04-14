@@ -24,6 +24,90 @@ import snowIcon from "../assets/images/icon-snow.webp";
 import stormIcon from "../assets/images/icon-storm.webp";
 import sunnyIcon from "../assets/images/icon-sunny.webp";
 
+function chooseIcon(weatherCode) {
+  if (weatherCode === 0) {
+    return sunnyIcon;
+  } else if (weatherCode === 1 || weatherCode === 2) {
+    return partlyCloudyIcon;
+  } else if (weatherCode === 3) {
+    return overcastIcon;
+  } else if (weatherCode === 45 || weatherCode === 48) {
+    return fogIcon;
+  } else if (
+    weatherCode === 51 ||
+    weatherCode === 53 ||
+    weatherCode === 55 ||
+    weatherCode === 56 ||
+    weatherCode === 57
+  ) {
+    return drizzleIcon;
+  } else if (
+    weatherCode === 61 ||
+    weatherCode === 63 ||
+    weatherCode === 65 ||
+    weatherCode === 66 ||
+    weatherCode === 67 ||
+    weatherCode === 80 ||
+    weatherCode === 81 ||
+    weatherCode === 82
+  ) {
+    return rainIcon;
+  } else if (
+    weatherCode === 71 ||
+    weatherCode === 73 ||
+    weatherCode === 75 ||
+    weatherCode === 77 ||
+    weatherCode === 85 ||
+    weatherCode === 86
+  ) {
+    return snowIcon;
+  } else if (weatherCode >= 95) {
+    return stormIcon;
+  }
+}
+
+function getAltText(weatherCode) {
+  if (weatherCode === 0) {
+    return "Sunny Icon";
+  } else if (weatherCode === 1 || weatherCode === 2) {
+    return "Partly Cloudy Icon";
+  } else if (weatherCode === 3) {
+    return "Overcast Icon";
+  } else if (weatherCode === 45 || weatherCode === 48) {
+    return "Fog Icon";
+  } else if (
+    weatherCode === 51 ||
+    weatherCode === 53 ||
+    weatherCode === 55 ||
+    weatherCode === 56 ||
+    weatherCode === 57
+  ) {
+    return "Drizzle Icon";
+  } else if (
+    weatherCode === 61 ||
+    weatherCode === 63 ||
+    weatherCode === 65 ||
+    weatherCode === 66 ||
+    weatherCode === 67 ||
+    weatherCode === 80 ||
+    weatherCode === 81 ||
+    weatherCode === 82
+  ) {
+    return "Rain Icon";
+  } else if (
+    weatherCode === 71 ||
+    weatherCode === 73 ||
+    weatherCode === 75 ||
+    weatherCode === 77 ||
+    weatherCode === 85 ||
+    weatherCode === 86
+  ) {
+    return "Snow Icon";
+  } else if (weatherCode >= 95) {
+    return "Storm Icon";
+  }
+}
+
 export default function WeatherDetails({
   choosingDay,
   handleChangeDay,
@@ -48,48 +132,6 @@ export default function WeatherDetails({
       return data;
     }
   }, [choosingDay, cityWeather.hourly]);
-
-  function chooseIcon(weatherCode) {
-    if (weatherCode === 0) {
-      return sunnyIcon;
-    } else if (weatherCode === 1 || weatherCode === 2) {
-      return partlyCloudyIcon;
-    } else if (weatherCode === 3) {
-      return overcastIcon;
-    } else if (weatherCode === 45 || weatherCode === 48) {
-      return fogIcon;
-    } else if (
-      weatherCode === 51 ||
-      weatherCode === 53 ||
-      weatherCode === 55 ||
-      weatherCode === 56 ||
-      weatherCode === 57
-    ) {
-      return drizzleIcon;
-    } else if (
-      weatherCode === 61 ||
-      weatherCode === 63 ||
-      weatherCode === 65 ||
-      weatherCode === 66 ||
-      weatherCode === 67 ||
-      weatherCode === 80 ||
-      weatherCode === 81 ||
-      weatherCode === 82
-    ) {
-      return rainIcon;
-    } else if (
-      weatherCode === 71 ||
-      weatherCode === 73 ||
-      weatherCode === 75 ||
-      weatherCode === 77 ||
-      weatherCode === 85 ||
-      weatherCode === 86
-    ) {
-      return snowIcon;
-    } else if (weatherCode >= 95) {
-      return stormIcon;
-    }
-  }
 
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -189,7 +231,7 @@ export default function WeatherDetails({
                 }}
               >
                 <Box>
-                  <Typography variant="h3" fontSize="1.75rem" fontWeight={600}>
+                  <Typography variant="h2" fontSize="1.75rem" fontWeight={600}>
                     {`${cityWeather.city}, ${cityWeather.country}`}
                   </Typography>
                   <Typography
@@ -208,11 +250,11 @@ export default function WeatherDetails({
                   <Box
                     component="img"
                     src={chooseIcon(cityWeather.current.weather_code)}
-                    alt="Sunny Icon"
+                    alt={getAltText(cityWeather.current.weather_code)}
                     width="110px"
                   />
                   <Typography
-                    variant="h4"
+                    variant="h3"
                     fontSize="5rem"
                     fontWeight={600}
                     fontStyle="italic"
@@ -240,7 +282,7 @@ export default function WeatherDetails({
                 }}
               >
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   fontSize="15px"
                   fontWeight={600}
                   color="hsl(240, 6%, 70%)"
@@ -270,7 +312,7 @@ export default function WeatherDetails({
                 }}
               >
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   fontSize="15px"
                   fontWeight={600}
                   color="hsl(240, 6%, 70%)"
@@ -300,7 +342,7 @@ export default function WeatherDetails({
                 }}
               >
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   fontSize="15px"
                   fontWeight={600}
                   color="hsl(240, 6%, 70%)"
@@ -315,7 +357,7 @@ export default function WeatherDetails({
                   color="white"
                   marginBlockStart="1.25rem"
                 >
-                  {`${isLoading || !cityWeather.current ? "-" : unitsSystem === "metric" ? Math.round(cityWeather.current.wind_speed_10m) + " km/h" : Math.round(cityWeather.current.wind_speed_10m) + " mph"}`}
+                  {`${isLoading || !cityWeather.current ? "-" : Math.round(cityWeather.current.wind_speed_10m) + " " + unitsSystem.units.wind}`}
                 </Typography>
               </Box>
             </Grid>
@@ -330,7 +372,7 @@ export default function WeatherDetails({
                 }}
               >
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   fontSize="15px"
                   fontWeight={600}
                   color="hsl(240, 6%, 70%)"
@@ -345,7 +387,7 @@ export default function WeatherDetails({
                   color="white"
                   marginBlockStart="1.25rem"
                 >
-                  {`${isLoading || !cityWeather.current ? "-" : unitsSystem === "metric" ? Math.round(cityWeather.current.precipitation) + " mm" : Math.round(cityWeather.current.precipitation) + " in"}`}
+                  {`${isLoading || !cityWeather.current ? "-" : Math.round(cityWeather.current.precipitation) + " " + (unitsSystem.units.precipitation === "mm" ? "mm" : "in")}`}
                 </Typography>
               </Box>
             </Grid>
@@ -386,7 +428,7 @@ export default function WeatherDetails({
                       <Box
                         component="img"
                         src={chooseIcon(cityWeather.daily.weather_code[index])}
-                        alt="Sunny"
+                        alt={getAltText(cityWeather.daily.weather_code[index])}
                         width="52px"
                         marginBlock="10px"
                       />
@@ -517,6 +559,9 @@ export default function WeatherDetails({
                         "&:hover": {
                           backgroundColor: "hsl(243, 23%, 24%)",
                         },
+                        "&.Mui-focusVisible": {
+                          backgroundColor: "hsl(243, 23%, 24%)",
+                        },
                       }}
                     >
                       {dayjs(cityWeather.daily.time[index]).format("dddd")}
@@ -570,6 +615,7 @@ export default function WeatherDetails({
                         <Box
                           component="img"
                           src={chooseIcon(hourlyData.weather_code[index])}
+                          alt={getAltText(hourlyData.weather_code[index])}
                           width="40px"
                         />
                         <Typography
