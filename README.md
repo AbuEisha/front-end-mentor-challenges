@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/weather-app)
+- [Live Site URL Here](https://weather-api-app.pages.dev/)
 
 ## My process
 
