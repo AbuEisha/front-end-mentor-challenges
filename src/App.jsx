@@ -252,8 +252,8 @@ function App() {
               Something went wrong
             </Typography>
             <Typography variant="body1" color="hsl(250, 6%, 84%)">
-              We couldn't connect to the server (API error). Please try again in
-              a few moments.
+              {`We couldn't connect to the server (API error). Please try again in
+              a few moments.`}
             </Typography>
             <Button
               disableRipple
@@ -299,7 +299,7 @@ function App() {
                 marginBlockStart="2.25rem"
                 color="hsl(0, 0%, 100%)"
               >
-                No search result found!
+                {`No search result found!`}
               </Typography>
             )}
             {!cityError && (
