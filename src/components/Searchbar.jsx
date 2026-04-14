@@ -116,15 +116,26 @@ export default function Searchbar({
                 sx={{
                   position: "absolute",
                   width: "100%",
-                  maxHeight: 185,
+                  maxHeight: 176,
                   top: "100%",
                   left: "0",
                   marginBlockStart: "10px",
                   borderRadius: ".5rem",
-                  overflow: "auto",
+                  overflowY: "auto",
                   backgroundColor: "hsl(243, 27%, 20%)",
                   color: "hsl(250, 6%, 84%)",
                   zIndex: 10,
+                  "&::-webkit-scrollbar": {
+                    width: "4px",
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    backgroundColor: "hsl(243, 27%, 20%)",
+                    borderRadius: "6px",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: "hsl(243, 23%, 30%)",
+                    borderRadius: "6px",
+                  },
                 }}
               >
                 {searchLoading && (
