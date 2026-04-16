@@ -486,7 +486,6 @@ export default function WeatherDetails({
                   textTransform: "none",
                   paddingInline: "18px",
                   borderRadius: ".5rem",
-                  minWidth: "122px",
                   height: "38px",
                   justifyContent: "space-between",
                   gap: ".5rem",
@@ -528,7 +527,7 @@ export default function WeatherDetails({
                       marginInlineStart: {
                         xs: "-35px",
                         sm: "-43px",
-                        lg: "-96px",
+                        lg: "-70px",
                       },
                       marginBlockStart: "10px",
                     },

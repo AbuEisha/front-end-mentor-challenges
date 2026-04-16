@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Typography,
@@ -16,28 +16,101 @@ import loadingIcon from "../assets/images/icon-loading.svg";
 export default function Searchbar({
   cityName,
   handleChange,
-  filteredCities,
+  setServerError,
   handleCitySearch,
 }) {
-  const [isFocus, setIsFocus] = useState(false);
-  const [searchLoading, setSearchLoading] = useState(false);
+  const [suggestedCities, setSuggestedCities] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const searchInputRef = useRef(null);
+  const itemRefs = useRef([]);
 
-  const handleFocus = () => {
-    setIsFocus(true);
-    if (!isFocus) {
-      setSearchLoading(true);
-      setTimeout(() => {
-        setSearchLoading(false);
-      }, 750);
+  useEffect(() => {
+    const getSuggestedCities = async (letters) => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://geocoding-api.open-meteo.com/v1/search?name=${letters}`,
+        );
+        const data = await response.json();
+        if (!data.results || data.results.length === 0) {
+          setSuggestedCities([]);
+          return;
+        }
+        setSuggestedCities(data.results);
+      } catch (err) {
+        setServerError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (cityName.length > 2) getSuggestedCities(cityName);
+  }, [cityName]);
+
+  useEffect(() => {
+    setActiveIndex(0);
+    itemRefs.current = [];
+  }, [suggestedCities]);
+
+  useEffect(() => {
+    if (itemRefs.current[activeIndex]) {
+      itemRefs.current[activeIndex].scrollIntoView({
+        block: "nearest",
+        behavior: "smooth",
+      });
     }
+  }, [activeIndex]);
+
+  const handleChangeSearchInput = (value) => {
+    handleChange(value);
+    if (value.length > 2 && !isOpen) setIsOpen(true);
+    else if (value.length < 3 && isOpen) setIsOpen(false);
   };
 
   const handleSelectCity = (city) => {
     handleChange(city);
-    setIsFocus(false);
-    searchInputRef.current?.focus();
+    setIsOpen(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (suggestedCities.length !== 0) {
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          setActiveIndex((prev) => (prev + 1) % suggestedCities.length);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          setActiveIndex(
+            (prev) =>
+              (prev - 1 + suggestedCities.length) % suggestedCities.length,
+          );
+          break;
+        case "Home":
+          e.preventDefault();
+          setActiveIndex(0);
+          break;
+        case "End":
+          e.preventDefault();
+          setActiveIndex(suggestedCities.length - 1);
+          break;
+        case "Enter":
+          e.preventDefault();
+          if (suggestedCities[activeIndex]) {
+            const city = suggestedCities[activeIndex];
+            handleSelectCity(`${city.name}, ${city.country}`);
+          }
+          break;
+        case "Escape":
+          e.preventDefault();
+          setIsOpen(false);
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   return (
@@ -57,7 +130,7 @@ export default function Searchbar({
         marginInline="auto"
         gap={{ xs: ".75rem", md: "1rem" }}
       >
-        <ClickAwayListener onClickAway={() => setIsFocus(false)}>
+        <ClickAwayListener onClickAway={() => setIsOpen(false)}>
           <Box flex={1} position="relative">
             <Box
               component="img"
@@ -71,14 +144,13 @@ export default function Searchbar({
               }}
             />
             <TextField
-              ref={searchInputRef}
               autoComplete="off"
               fullWidth
               variant="filled"
               placeholder="Search for a place..."
               value={cityName}
-              onChange={(e) => handleChange(e.target.value)}
-              onFocus={handleFocus}
+              onChange={(e) => handleChangeSearchInput(e.target.value)}
+              onKeyDown={handleKeyDown}
               sx={{
                 "& .MuiInputBase-root": {
                   fontSize: "18px",
@@ -111,35 +183,23 @@ export default function Searchbar({
               }}
             />
 
-            {isFocus && (
+            {isOpen && (
               <Paper
                 sx={{
                   position: "absolute",
                   width: "100%",
-                  maxHeight: 176,
+                  paddingBlock: ".5rem",
                   top: "100%",
                   left: "0",
                   marginBlockStart: "10px",
                   borderRadius: ".5rem",
-                  overflowY: "auto",
                   backgroundColor: "hsl(243, 27%, 20%)",
                   color: "hsl(250, 6%, 84%)",
                   zIndex: 10,
-                  "&::-webkit-scrollbar": {
-                    width: "4px",
-                  },
-                  "&::-webkit-scrollbar-track": {
-                    backgroundColor: "hsl(243, 27%, 20%)",
-                    borderRadius: "6px",
-                  },
-                  "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: "hsl(243, 23%, 30%)",
-                    borderRadius: "6px",
-                  },
                 }}
               >
-                {searchLoading && (
-                  <Stack direction="row" gap=".75rem" padding="1rem">
+                {isLoading && (
+                  <Stack direction="row" gap=".75rem" padding=".5rem 1rem">
                     <Box
                       component="img"
                       src={loadingIcon}
@@ -152,43 +212,80 @@ export default function Searchbar({
                   </Stack>
                 )}
 
-                {!searchLoading &&
-                  (filteredCities.length !== 0 ? (
+                {!isLoading &&
+                  (suggestedCities.length !== 0 ? (
                     <List
-                      sx={{ padding: "8px" }}
                       role="listbox"
-                      aria-label="Search Results"
+                      aria-label="Suggested Cities"
+                      tabIndex={0}
+                      sx={{
+                        outline: "none",
+                        paddingBlock: "0",
+                        paddingInline: "8px",
+                        maxHeight: 160,
+                        overflowY: "auto",
+                        "&::-webkit-scrollbar": {
+                          width: "4px",
+                        },
+                        "&::-webkit-scrollbar-track": {
+                          backgroundColor: "hsl(243, 27%, 20%)",
+                          borderRadius: "6px",
+                        },
+                        "&::-webkit-scrollbar-thumb": {
+                          backgroundColor: "hsl(243, 23%, 30%)",
+                          borderRadius: "6px",
+                        },
+                      }}
                     >
-                      {filteredCities.map((city, index) => (
-                        <ListItem key={index} sx={{ padding: "0" }}>
-                          <Button
-                            disableRipple
-                            sx={{
-                              borderRadius: ".5rem",
-                              width: "100%",
-                              height: "40px",
-                              color: "hsl(0, 0%, 100%)",
-                              textTransform: "capitalize",
-                              justifyContent: "flex-start",
-                              border: "1px solid transparent",
-                              "&:hover": {
-                                borderColor: "hsl(243, 23%, 30%)",
-                                backgroundColor: "hsl(243, 23%, 24%)",
-                              },
-                              "&.Mui-focusVisible": {
-                                borderColor: "hsl(243, 23%, 30%)",
-                                backgroundColor: "hsl(243, 23%, 24%)",
-                              },
-                            }}
-                            onClick={() => handleSelectCity(city)}
+                      {suggestedCities.map((city, index) => {
+                        const isActive = index === activeIndex;
+                        return (
+                          <ListItem
+                            key={index}
+                            sx={{ padding: "0" }}
+                            ref={(el) => (itemRefs.current[index] = el)}
                           >
-                            {city}
-                          </Button>
-                        </ListItem>
-                      ))}
+                            <Button
+                              disableRipple
+                              aria-selected={isActive}
+                              tabIndex={-1}
+                              sx={{
+                                backgroundColor: isActive
+                                  ? "hsl(243, 23%, 24%)"
+                                  : "transparent",
+                                border: "1px solid",
+                                borderColor: isActive
+                                  ? "hsl(243, 23%, 30%)"
+                                  : "transparent",
+                                borderRadius: ".5rem",
+                                width: "100%",
+                                height: "40px",
+                                color: "hsl(0, 0%, 100%)",
+                                textTransform: "none",
+                                justifyContent: "flex-start",
+                                "&:hover": {
+                                  borderColor: "hsl(243, 23%, 30%)",
+                                  backgroundColor: "hsl(243, 23%, 24%)",
+                                },
+                                "&.Mui-focusVisible": {
+                                  borderColor: "hsl(243, 23%, 30%)",
+                                  backgroundColor: "hsl(243, 23%, 24%)",
+                                },
+                              }}
+                              onClick={() =>
+                                handleSelectCity(
+                                  `${city.name}, ${city.country}`,
+                                )
+                              }
+                            >
+                              {`${city.name}, ${city.country}`}
+                            </Button>
+                          </ListItem>
+                        );
+                      })}
                     </List>
                   ) : (
-                    <Typography variant="body1" padding=".75rem">
+                    <Typography variant="body1" padding=".25rem">
                       There is no result
                     </Typography>
                   ))}

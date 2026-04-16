@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
 import dayjs from "dayjs";
 
@@ -22,7 +22,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [serverError, setServerError] = useState(null);
   const [cityError, setCityError] = useState(false);
-  const [searchedCities, setSearchedCities] = useState(["berlin"]);
 
   useEffect(() => {
     if (cityWeather.city) getCityWeather(cityWeather.city);
@@ -31,22 +30,14 @@ function App() {
     getCityWeather("berlin");
   }, []);
 
-  const filteredCities = useMemo(
-    () =>
-      searchedCities.filter((city) =>
-        city.toLowerCase().includes(cityName.toLowerCase()),
-      ),
-    [cityName],
-  );
-
   async function getCityWeather(city) {
     try {
       if (cityWeather.city !== city) setIsLoading(true);
-      if (choosingDay !== dayjs().format("dddd"))
+      if (choosingDay !== dayjs().format("dddd") && cityWeather.city !== city)
         setChoosingDay(dayjs().format("dddd"));
       if (cityError) setCityError(false);
       const response1 = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en&format=json`,
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}`,
       );
       const cityInfo = await response1.json();
       if (!cityInfo.results || cityInfo.results.length === 0) {
@@ -72,10 +63,6 @@ function App() {
         hourly: weatherData.hourly,
       });
 
-      const isFound = searchedCities.filter(
-        (searchedCity) => searchedCity.toLowerCase() === name.toLowerCase(),
-      );
-      if (isFound.length === 0) setSearchedCities((prev) => [...prev, name]);
       setCityName("");
     } catch (err) {
       setServerError(err);
@@ -287,7 +274,7 @@ function App() {
             <Searchbar
               cityName={cityName}
               handleChange={handleChangeCityValue}
-              filteredCities={filteredCities}
+              setServerError={setServerError}
               handleCitySearch={handleCitySearch}
             />
             {cityError && (
