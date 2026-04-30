@@ -217,7 +217,7 @@ export default function Product({ product, handleAddToCart }) {
             variant="body1"
             fontSize={{ xs: "15.2px", md: "1rem" }}
             color="hsl(219, 9%, 45%)"
-            marginBlock={{ xs: "1.25rem 2rem", sm: "2rem 1.25rem" }}
+            marginBlock={{ xs: "1.25rem 2rem", sm: "2rem 1.5rem" }}
           >
             {product.description}
           </Typography>
@@ -225,7 +225,7 @@ export default function Product({ product, handleAddToCart }) {
             flexDirection={{ xs: "row", md: "column" }}
             alignItems={{ xs: "center", md: "flex-start" }}
             justifyContent="space-between"
-            rowGap={1.5}
+            rowGap={2}
             marginBlockEnd={{ xs: 3.5, sm: 4 }}
           >
             <Stack flexDirection="row" alignItems="center" gap={2}>
@@ -257,7 +257,7 @@ export default function Product({ product, handleAddToCart }) {
               sx={{ textDecoration: "line-through" }}
             >{`$${product.price.toFixed(2)}`}</Typography>
           </Stack>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} marginBlockEnd={{ sm: 1.5 }}>
             <Grid size={{ xs: 12, md: 4.5 }}>
               <Stack
                 flexDirection="row"
