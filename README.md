@@ -23,6 +23,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Advice Generator App Challenge](#advice-generator-app-challenge)
 - [Intermediate Challenges](#intermediate-challenges)
   - [Weather App Challenge](#weather-app-challenge)
+  - [E-commerce Product Page Challenge](#e-commerce-product-page-challenge)
 
 ## Newbie Challenges
 
@@ -149,3 +150,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/weather-app)
 
 - [Solution Live URL Here](https://weather-api-app.pages.dev/)
+
+### E-commerce Product Page Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/ecommerce-product-page)
+
+- [Solution Live URL Here](https://ecommerce-product-page-live.pages.dev/)
