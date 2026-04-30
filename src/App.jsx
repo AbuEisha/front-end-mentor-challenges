@@ -106,6 +106,7 @@ function App() {
   const drawer = (
     <Box sx={{ padding: "1rem 1.5rem" }}>
       <IconButton
+        aria-label="Close Drawer Navigation"
         onClick={handleDrawerToggle}
         sx={{
           padding: 0,
@@ -249,6 +250,7 @@ function App() {
               >
                 <Box position={{ xs: "static", lg: "relative" }}>
                   <IconButton
+                    aria-label="Open Cart"
                     onClick={handleCartToggle}
                     disableRipple
                     sx={{
@@ -345,6 +347,7 @@ function App() {
                                     </Stack>
                                   </Box>
                                   <IconButton
+                                    aria-label={`Delete ${pro.name} from Cart`}
                                     disableRipple
                                     onClick={() => handleDeleteProduct(pro.id)}
                                     sx={{
@@ -409,6 +412,7 @@ function App() {
                   )}
                 </Box>
                 <Button
+                  aria-label="Open User Menu"
                   disableRipple
                   sx={{
                     minWidth: { xs: 28, md: 54 },

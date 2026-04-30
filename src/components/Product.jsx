@@ -36,8 +36,8 @@ export default function Product({ product, handleAddToCart }) {
     setQuantity(0);
   };
 
-  const getDiscountedPrice = (product) =>
-    product.price - (product.price * product.discount) / 100;
+  const getDiscountedPrice = (pro) =>
+    pro.price - (pro.price * pro.discount) / 100;
 
   const handlePreviousImg = () => {
     setChoosingImg(
@@ -65,6 +65,7 @@ export default function Product({ product, handleAddToCart }) {
         <Grid size={{ xs: 12, sm: 5.5, md: 5.25 }}>
           <Box position="relative" display={{ xs: "block", sm: "none" }}>
             <IconButton
+              aria-label="Previous Image"
               disableRipple
               onClick={handlePreviousImg}
               sx={{
@@ -92,6 +93,7 @@ export default function Product({ product, handleAddToCart }) {
             />
 
             <IconButton
+              aria-label="Next Image"
               disableRipple
               onClick={handleNextImg}
               sx={{
@@ -113,6 +115,7 @@ export default function Product({ product, handleAddToCart }) {
             </IconButton>
           </Box>
           <Button
+            aria-label="Open Images Dialog"
             onClick={() => handleOpen(product)}
             fullWidth
             sx={{
@@ -138,6 +141,7 @@ export default function Product({ product, handleAddToCart }) {
             {product.thumbnails.map((thumb, index) => (
               <Grid key={index} size={3}>
                 <Button
+                  aria-label={`Thumbnail ${index + 1}`}
                   onClick={() => handleChoosingImg(index)}
                   fullWidth
                   sx={{
@@ -266,6 +270,7 @@ export default function Product({ product, handleAddToCart }) {
                 }}
               >
                 <IconButton
+                  aria-label="Decrease Quantity"
                   disableRipple
                   onClick={handleDecreaseQuantity}
                   sx={{
@@ -288,6 +293,7 @@ export default function Product({ product, handleAddToCart }) {
                   {quantity}
                 </Typography>
                 <IconButton
+                  aria-label="Increase Quantity"
                   disableRipple
                   onClick={handleIncreaseQuantity}
                   sx={{

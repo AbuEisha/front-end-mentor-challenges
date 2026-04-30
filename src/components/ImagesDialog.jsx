@@ -35,6 +35,7 @@ export default function ImagesDialog({
       }}
     >
       <IconButton
+        aria-label="Close Images Dialog"
         onClick={handleClose}
         sx={{
           padding: 0,
@@ -50,6 +51,7 @@ export default function ImagesDialog({
       </IconButton>
       <Box position="relative">
         <IconButton
+          aria-label="Previous Image"
           disableRipple
           onClick={handlePreviousImg}
           sx={{
@@ -77,6 +79,7 @@ export default function ImagesDialog({
         />
 
         <IconButton
+          aria-label="Next Image"
           disableRipple
           onClick={handleNextImg}
           sx={{
@@ -101,6 +104,7 @@ export default function ImagesDialog({
         {product.thumbnails.map((thumb, index) => (
           <Grid key={index} size={3}>
             <Button
+              aria-label={`Select Image ${index + 1}`}
               onClick={() => handleImageIndex(index)}
               fullWidth
               sx={{
