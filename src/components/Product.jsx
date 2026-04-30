@@ -8,11 +8,14 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-import MinusIcon from "./assets/images/icon-minus.svg?react";
-import PlusIcon from "./assets/images/icon-plus.svg?react";
-import CartIcon from "./assets/images/icon-cart.svg?react";
-import PreviousIcon from "./assets/images/icon-previous.svg?react";
-import NextIcon from "./assets/images/icon-next.svg?react";
+import getImages from "../utils/imagesGlob";
+
+import MinusIcon from "../assets/images/icon-minus.svg?react";
+import PlusIcon from "../assets/images/icon-plus.svg?react";
+import CartIcon from "../assets/images/icon-cart.svg?react";
+import PreviousIcon from "../assets/images/icon-previous.svg?react";
+import NextIcon from "../assets/images/icon-next.svg?react";
+
 import ImagesDialog from "./ImagesDialog";
 
 export default function Product({ product, handleAddToCart }) {
@@ -83,9 +86,7 @@ export default function Product({ product, handleAddToCart }) {
             </IconButton>
             <Box
               component="img"
-              src={
-                new URL(product.large_images[choosingImg], import.meta.url).href
-              }
+              src={getImages(product.large_images[choosingImg])}
               alt={product.name}
               sx={{ display: "block", maxWidth: "100%" }}
             />
@@ -123,9 +124,7 @@ export default function Product({ product, handleAddToCart }) {
           >
             <Box
               component="img"
-              src={
-                new URL(product.large_images[choosingImg], import.meta.url).href
-              }
+              src={getImages(product.large_images[choosingImg])}
               alt={product.name}
               sx={{ display: "block", maxWidth: "100%" }}
             />
@@ -175,7 +174,7 @@ export default function Product({ product, handleAddToCart }) {
                 >
                   <Box
                     component="img"
-                    src={new URL(thumb, import.meta.url).href}
+                    src={getImages(thumb)}
                     alt={product.name}
                     sx={{
                       display: "block",

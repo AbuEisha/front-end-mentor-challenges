@@ -1,8 +1,10 @@
 import { Box, Button, Dialog, IconButton, Grid } from "@mui/material";
 
-import CloseIcon from "./assets/images/icon-close.svg?react";
-import PreviousIcon from "./assets/images/icon-previous.svg?react";
-import NextIcon from "./assets/images/icon-next.svg?react";
+import getImages from "../utils/imagesGlob";
+
+import CloseIcon from "../assets/images/icon-close.svg?react";
+import PreviousIcon from "../assets/images/icon-previous.svg?react";
+import NextIcon from "../assets/images/icon-next.svg?react";
 
 export default function ImagesDialog({
   open,
@@ -69,7 +71,7 @@ export default function ImagesDialog({
         </IconButton>
         <Box
           component="img"
-          src={new URL(product.large_images[imageIndex], import.meta.url).href}
+          src={getImages(product.large_images[imageIndex])}
           alt={product.name}
           sx={{ display: "block", maxWidth: "100%", borderRadius: "1rem" }}
         />
@@ -133,7 +135,7 @@ export default function ImagesDialog({
             >
               <Box
                 component="img"
-                src={new URL(thumb, import.meta.url).href}
+                src={getImages(thumb)}
                 alt={product.name}
                 sx={{
                   display: "block",

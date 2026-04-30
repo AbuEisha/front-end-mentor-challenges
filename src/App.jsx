@@ -21,6 +21,8 @@ import {
 
 import "./App.css";
 
+import getImages from "./utils/imagesGlob";
+
 import Logo from "./assets/images/logo.svg?react";
 import MenuIcon from "./assets/images/icon-menu.svg?react";
 import CartIcon from "./assets/images/icon-cart.svg?react";
@@ -29,7 +31,7 @@ import CloseIcon from "./assets/images/icon-close.svg?react";
 import avatarImg from "./assets/images/image-avatar.png";
 
 import products from "./assets/products.json";
-import Product from "./Product";
+import Product from "./components/Product";
 
 const drawerWidth = 250;
 const navItems = ["Collections", "Men", "Women", "About", "Contact"];
@@ -320,9 +322,7 @@ function App() {
                                 >
                                   <Box
                                     component="img"
-                                    src={
-                                      new URL(pro.imgUrl, import.meta.url).href
-                                    }
+                                    src={getImages(pro.imgUrl)}
                                     alt={pro.name}
                                     sx={{
                                       width: "50px",
