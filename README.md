@@ -24,6 +24,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Intermediate Challenges](#intermediate-challenges)
   - [Weather App Challenge](#weather-app-challenge)
   - [E-commerce Product Page Challenge](#e-commerce-product-page-challenge)
+  - [Calculator App Challenge](#calculator-app-challenge)
 
 ## Newbie Challenges
 
@@ -158,3 +159,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/ecommerce-product-page)
 
 - [Solution Live URL Here](https://ecommerce-product-page-live.pages.dev/)
+
+### Calculator App Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/calculator-app)
+
+- [Solution Live URL Here](https://calculator-app-live.pages.dev/)
