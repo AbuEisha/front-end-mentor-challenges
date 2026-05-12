@@ -508,7 +508,7 @@ function App() {
                   }}
                 >
                   <Typography
-                    variant="body1"
+                    variant="button"
                     fontSize={
                       digit.type === "del"
                         ? { xs: "20px", sm: "28px" }
@@ -551,7 +551,7 @@ function App() {
                 }}
               >
                 <Typography
-                  variant="body1"
+                  variant="button"
                   fontSize={{ xs: "20px", sm: "28px" }}
                   fontWeight={700}
                   color="var(--delete-key-text-color)"
@@ -583,7 +583,7 @@ function App() {
                 }}
               >
                 <Typography
-                  variant="body1"
+                  variant="button"
                   fontSize={{ xs: "20px", sm: "28px" }}
                   fontWeight={700}
                   color="var(--equal-key-text-color)"
