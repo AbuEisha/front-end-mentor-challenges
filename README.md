@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- [Solution URL Here](https://your-solution-url.com)
-- [Live Site URL Here](https://your-live-site-url.com)
+- [Solution URL Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/todo-app)
+- [Live Site URL Here](https://todo-app-live.pages.dev/)
 
 ## My process
 
