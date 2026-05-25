@@ -25,6 +25,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Weather App Challenge](#weather-app-challenge)
   - [E-commerce Product Page Challenge](#e-commerce-product-page-challenge)
   - [Calculator App Challenge](#calculator-app-challenge)
+  - [Todo App Challenge](#todo-app-challenge)
 
 ## Newbie Challenges
 
@@ -167,3 +168,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/calculator-app)
 
 - [Solution Live URL Here](https://calculator-app-live.pages.dev/)
+
+### Todo App Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/todo-app)
+
+- [Solution Live URL Here](https://todo-app-live.pages.dev/)
