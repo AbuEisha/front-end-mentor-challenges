@@ -181,6 +181,7 @@ function App() {
       <Box
         component="img"
         src={mode === "dark" ? bgMobileDark : bgMobileLight}
+        alt={mode === "dark" ? "Dark Mode Background" : "Light Mode Background"}
         sx={{
           position: "absolute",
           height: 200,
@@ -193,6 +194,7 @@ function App() {
       <Box
         component="img"
         src={mode === "dark" ? bgDesktopDark : bgDesktopLight}
+        alt={mode === "dark" ? "Dark Mode Background" : "Light Mode Background"}
         sx={{
           position: "absolute",
           height: 300,
@@ -235,14 +237,13 @@ function App() {
         </Stack>
         <Stack
           component="form"
-          onSubmit={handleCreateTask}
           flexDirection="row"
           alignItems="center"
           sx={{
             backgroundColor: "background.paper",
             padding: { xs: "14px 1.25rem 10px", sm: "1.25rem 1.5rem 1rem" },
             borderRadius: ".5rem",
-            marginBlock: { xs: "2rem 1rem", sm: "2.5rem 1.5rem" },
+            marginBlock: { xs: "2rem 1rem", sm: "34px 1.5rem" },
           }}
         >
           <Box
@@ -315,6 +316,7 @@ function App() {
             }}
           />
           <Button
+            type="submit"
             disableRipple
             aria-label="Create Task"
             sx={{ padding: 0, minWidth: 0 }}
