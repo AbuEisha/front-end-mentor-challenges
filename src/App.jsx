@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import "./App.css";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
-import Big from "big.js";
+import calculatorReducer from "./calculatorReducer";
 
 const digits = [
   { value: "7", label: "Number Seven", type: "digit" },
@@ -24,8 +24,8 @@ const digits = [
 
 function App() {
   const [theme, setTheme] = useState("theme-1");
-  const [displayValue, setDisplayValue] = useState("0");
-  const [calcElements, setCalcElements] = useState({
+  const [calcInfo, dispatch] = useReducer(calculatorReducer, {
+    displayValue: "0",
     firstNumber: "0",
     operator: null,
     secondNumber: null,
@@ -68,205 +68,20 @@ function App() {
     return formatted;
   };
 
-  const addAfterEqual = (value) => {
-    setDisplayValue(value);
-    setCalcElements({
-      firstNumber: value,
-      operator: null,
-      secondNumber: null,
-      equal: null,
-    });
+  const handleUpdateDisplayValue = (val) => {
+    dispatch({ type: "update", payload: { value: val } });
   };
 
-  const addOneValue = (value, number) => {
-    setDisplayValue(value);
-    setCalcElements((prev) => ({ ...prev, [number]: value }));
-  };
-
-  const addMoreValue = (value, number) => {
-    setDisplayValue((prev) => prev + value);
-    setCalcElements((prev) => ({ ...prev, [number]: prev[number] + value }));
-  };
-
-  const handleUpdateDisplayValue = (value) => {
-    switch (value) {
-      case ".": {
-        if (calcElements.equal === "clicked") {
-          addAfterEqual("0.");
-        } else if (displayValue === "Can't divide by zero") {
-          addAfterEqual("0.");
-        } else if (!calcElements.operator && !calcElements.firstNumber) {
-          addOneValue("0.", "firstNumber");
-        } else if (!calcElements.operator && calcElements.firstNumber) {
-          if (!calcElements.firstNumber.match(/\./g)) {
-            addMoreValue(value, "firstNumber");
-          }
-        } else if (calcElements.operator && !calcElements.secondNumber) {
-          addOneValue("0.", "secondNumber");
-        } else if (calcElements.operator && calcElements.secondNumber) {
-          if (!calcElements.secondNumber.match(/\./g)) {
-            addMoreValue(value, "secondNumber");
-          }
-        }
-
-        break;
-      }
-      case "0":
-      case "1":
-      case "2":
-      case "3":
-      case "4":
-      case "5":
-      case "6":
-      case "7":
-      case "8":
-      case "9": {
-        if (calcElements.equal === "clicked") {
-          addAfterEqual(value);
-        } else if (displayValue === "Can't divide by zero") {
-          addAfterEqual(value);
-        } else if (
-          !calcElements.operator &&
-          (!calcElements.firstNumber || calcElements.firstNumber === "0")
-        ) {
-          addOneValue(value, "firstNumber");
-        } else if (
-          !calcElements.operator &&
-          calcElements.firstNumber &&
-          calcElements.firstNumber !== "0"
-        ) {
-          addMoreValue(value, "firstNumber");
-        } else if (
-          calcElements.operator &&
-          (!calcElements.secondNumber || calcElements.secondNumber === "0")
-        ) {
-          addOneValue(value, "secondNumber");
-        } else if (
-          calcElements.operator &&
-          calcElements.secondNumber &&
-          calcElements.secondNumber !== "0"
-        ) {
-          addMoreValue(value, "secondNumber");
-        }
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
-  const showResult = (result) => {
-    const res = result.toString();
-    setDisplayValue(res);
-    setCalcElements((prev) => ({
-      ...prev,
-      firstNumber: isNaN(res) ? "0" : res,
-      operator: isNaN(res) ? null : prev.operator,
-      secondNumber: isNaN(res) ? null : prev.secondNumber,
-      equal: "clicked",
-    }));
-  };
-
-  const handleCalculation = (first, op, second) => {
-    const firstNum = new Big(first);
-    switch (op) {
-      case "+": {
-        const result = firstNum.add(second);
-        showResult(result);
-        break;
-      }
-      case "-": {
-        const result = firstNum.minus(second);
-        showResult(result);
-        break;
-      }
-      case "*": {
-        const result = firstNum.mul(second);
-        showResult(result);
-        break;
-      }
-      case "/": {
-        const result =
-          second !== "0" ? firstNum.div(second) : "Can't divide by zero";
-        showResult(result);
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
-  const handleAddOperator = (first, op, second) => {
-    if (first && calcElements.operator && second) {
-      if (!calcElements.equal) {
-        handleCalculation(first, calcElements.operator, second);
-        setCalcElements((prev) => ({
-          ...prev,
-          operator: op,
-          secondNumber: null,
-          equal: null,
-        }));
-      } else {
-        setCalcElements((prev) => ({
-          ...prev,
-          operator: op,
-          secondNumber: null,
-          equal: null,
-        }));
-      }
-    } else if (first) setCalcElements((prev) => ({ ...prev, operator: op }));
+  const handleAddOperator = (op) => {
+    dispatch({ type: "addingSign", payload: { sign: op } });
   };
 
   const handleCalcEqual = () => {
-    if (!calcElements.operator) {
-      setDisplayValue(calcElements.firstNumber);
-      setCalcElements((prev) => ({ ...prev, equal: "clicked" }));
-    } else if (calcElements.operator && !calcElements.secondNumber) {
-      setCalcElements((prev) => ({
-        ...prev,
-        secondNumber: prev.firstNumber,
-      }));
-      handleCalculation(
-        calcElements.firstNumber,
-        calcElements.operator,
-        calcElements.firstNumber,
-      );
-    } else if (calcElements.operator && calcElements.secondNumber) {
-      handleCalculation(
-        calcElements.firstNumber,
-        calcElements.operator,
-        calcElements.secondNumber,
-      );
-    }
-  };
-
-  const deleteOneDigit = (number) => {
-    if (!calcElements[number] || calcElements[number].length === 1) {
-      setDisplayValue("0");
-      setCalcElements((prev) => ({ ...prev, [number]: "0" }));
-    } else {
-      setDisplayValue((prev) => prev.slice(0, prev.length - 1));
-      setCalcElements((prev) => ({
-        ...prev,
-        [number]: prev[number].slice(0, prev[number].length - 1),
-      }));
-    }
+    dispatch({ type: "equal" });
   };
 
   const handleDeleteOne = () => {
-    if (isNaN(displayValue)) {
-      addAfterEqual("0");
-      return;
-    }
-    if (!calcElements.equal) {
-      if (!calcElements.operator) {
-        deleteOneDigit("firstNumber");
-      } else {
-        deleteOneDigit("secondNumber");
-      }
-    } else {
-      setDisplayValue(calcElements.firstNumber);
-    }
+    dispatch({ type: "delete" });
   };
 
   const handleKeyDown = (e) => {
@@ -289,14 +104,11 @@ function App() {
       case "-":
       case "*":
       case "/": {
-        handleAddOperator(
-          calcElements.firstNumber,
-          e.key,
-          calcElements.secondNumber,
-        );
+        handleAddOperator(e.key);
         break;
       }
-      case "Enter": {
+      case "Enter":
+      case "=": {
         e.preventDefault();
         handleCalcEqual();
         break;
@@ -308,6 +120,10 @@ function App() {
       default:
         break;
     }
+  };
+
+  const resetCalculator = () => {
+    dispatch({ type: "reset" });
   };
 
   return (
@@ -452,7 +268,7 @@ function App() {
             color: "var(--text-color)",
           }}
         >
-          {formatForDisplay(displayValue)}
+          {formatForDisplay(calcInfo.displayValue)}
         </Typography>
         <Box
           component="section"
@@ -474,9 +290,7 @@ function App() {
                       : digit.type === "sign"
                         ? () =>
                             handleAddOperator(
-                              calcElements.firstNumber,
                               digit.value === "x" ? "*" : digit.value,
-                              calcElements.secondNumber,
                             )
                         : handleDeleteOne
                   }
@@ -532,7 +346,7 @@ function App() {
 
             <Grid size={6}>
               <Button
-                onClick={() => addAfterEqual("0")}
+                onClick={resetCalculator}
                 aria-label="Reset Calculation"
                 disableRipple
                 fullWidth
