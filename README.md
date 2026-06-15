@@ -26,6 +26,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [E-commerce Product Page Challenge](#e-commerce-product-page-challenge)
   - [Calculator App Challenge](#calculator-app-challenge)
   - [Todo App Challenge](#todo-app-challenge)
+  - [IP Address Tracker Challenge](#ip-address-tracker-challenge)
 
 ## Newbie Challenges
 
@@ -176,3 +177,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/todo-app)
 
 - [Solution Live URL Here](https://todo-app-live.pages.dev/)
+
+### IP Address Tracker Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/ip-address-tracker)
+
+- [Solution Live URL Here](https://ip-address-tracker-live.pages.dev/)
