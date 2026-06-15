@@ -29,8 +29,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/ip-address-tracker)
+- [Live Site URL Here](https://ip-address-tracker-live.pages.dev/)
 
 ## My process
 
