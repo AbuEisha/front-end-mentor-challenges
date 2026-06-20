@@ -27,6 +27,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Calculator App Challenge](#calculator-app-challenge)
   - [Todo App Challenge](#todo-app-challenge)
   - [IP Address Tracker Challenge](#ip-address-tracker-challenge)
+  - [Job Listings With Filtering Challenge](#job-listings-with-filtering-challenge)
 
 ## Newbie Challenges
 
@@ -185,3 +186,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/ip-address-tracker)
 
 - [Solution Live URL Here](https://ip-address-tracker-live.pages.dev/)
+
+### Job Listings With Filtering Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/job-listings-with-filtering)
+
+- [Solution Live URL Here](https://job-listings-with-filtering-live.pages.dev/)
