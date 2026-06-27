@@ -7,7 +7,6 @@ import {
   IconButton,
   List,
   ListItem,
-  Stack,
   TextField,
   Typography,
 } from "@mui/material";
