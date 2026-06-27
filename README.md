@@ -28,6 +28,7 @@ This Is a Main Repository To Show Front End Mentor Challenges.
   - [Todo App Challenge](#todo-app-challenge)
   - [IP Address Tracker Challenge](#ip-address-tracker-challenge)
   - [Job Listings With Filtering Challenge](#job-listings-with-filtering-challenge)
+  - [Manage Landing Page Challenge](#manage-landing-page-challenge)
 
 ## Newbie Challenges
 
@@ -194,3 +195,11 @@ This Is a Main Repository To Show Front End Mentor Challenges.
 - [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/job-listings-with-filtering)
 
 - [Solution Live URL Here](https://job-listings-with-filtering-live.pages.dev/)
+
+### Manage Landing Page Challenge
+
+- [Challenge URL Here](https://www.frontendmentor.io/challenges/manage-landing-page-SLXqC6P5)
+
+- [Solution Code Here](https://github.com/AbuEisha/front-end-mentor-challenges/tree/manage-landing-page)
+
+- [Solution Live URL Here](https://manage-landing-page-live.pages.dev/)
